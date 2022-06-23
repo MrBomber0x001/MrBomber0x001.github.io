@@ -79,7 +79,7 @@ Edit the `_config.yml` file to change any settings you want. To edit the file, c
 
 Note that in the video above only one setting in the `_config.yml` file is edited. **You should actually go through the rest of the settings as well. Don't be lazy, go through all the settings!**
 
-### 4. Congratulations! You have a website!
+### 4. Congratulations! You have a website
 
 After you save your changes to the `_config.yml` file (by clicking on *Commit changes* as the video tutorial shows), your website should be ready in a minute or two at `https://<yourusername>.github.io`. Every time you make a change to any file, your website will get rebuilt and should be updated in about a minute or so. Your website will be initialized with several sample blog posts and a couple other pages.
 
@@ -110,7 +110,6 @@ Files you create inside the [`_posts`](./_posts) directory will be treated as bl
 # Customizing parameters for each page
 
 **One last important thing**: In order to have your new pages use this template and not just be plain HTML pages, **you must add [YAML front matter](https://jekyllrb.com/docs/front-matter/) to the top of each page**:
-
 
 ```
 ---
@@ -172,7 +171,7 @@ nav-short   | By default, the navigation bar gets shorter after scrolling down t
 gh-repo   | If you want to show GitHub buttons at the top of a post, this sets the GitHub repo name (eg. `daattali/beautiful-jekyll`). You must also use the `gh-badge` parameter to specify what buttons to show.
 gh-badge  | Select which GitHub buttons to display. Available options are: [star, watch, fork, follow]. You must also use the `gh-repo` parameter to specify the GitHub repo.
 last-updated | If you want to show that a blog post was updated after it was originally released, you can specify an "Updated on" date.
-layout      | What type of page this is (default is `post` for blog posts and `page` for other pages). See _Page types_ section below for more information.
+layout      | What type of page this is (default is `post` for blog posts and `page` for other pages). See *Page types* section below for more information.
 
 ## Advanced parameters
 
