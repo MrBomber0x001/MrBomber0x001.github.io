@@ -43,3 +43,13 @@ tags: [productivity]
 5. write on a schedule (for a period (1h to 2h)) and do not look for organization, that comes later in the third process
 6. have a checklist of the topic to know you progress
 7. you should spend more time coding and problem solving than reading or writing [this is so important, so you optimize yourself for learning, not the illusion of learning]
+
+8. learn to focus (it's a skill, and you can improve it as you build it as you build your muscles) and it takes pain and patience to do so.
+
+9. Develope and investment mind (<https://blog.pragmaticengineer.com/the-investment-mindset/>
+)
+
+## To improve even further
+
+<https://www.brainpickings.org/2013/05/03/advice-on-writing/>
+<https://www.ybrikman.com/writing/2018/08/12/the-10-to-1-rule-of-writing-and-programming/>

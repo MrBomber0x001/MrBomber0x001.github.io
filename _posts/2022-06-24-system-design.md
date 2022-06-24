@@ -19,3 +19,10 @@ tags: [js, system-design]
 
 - [x] this is a simple todo
 - [ ] Let's see how it's going to be alike
+
+## Further Readings
+
+<https://blog.pragmaticengineer.com/distributed-architecture-concepts-i-have-learned-while-building-payments-systems/>
+
+## Resources
+<http://blog.gainlo.co/index.php/2017/03/24/chapter-5-system-design-interviews-part-complete-guide-google-interview-preparation/>
