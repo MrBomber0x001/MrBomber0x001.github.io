@@ -1,6 +1,6 @@
 ---
 layout: post
-title: How I plan to write
+title: How to plan for writing (Writing Strategy)
 subtitle: 
 cover-img: /assets/img/cover.jfif
 thumbnail-img: /assets/img/t-sql.jpg
@@ -48,6 +48,9 @@ tags: [productivity]
 
 9. Develope and investment mind (<https://blog.pragmaticengineer.com/the-investment-mindset/>
 )
+10. you should [must] study and practice the topic you're writing about before starting to write, so take your time playing around if this is a new topic or concept for you, and then after you feel confident about this topic, plan to write.
+11. you don't have to write about everything in that topic, write about the thing that you might can't understand well, and with writing this will give you more time to search and live with this topic a little bit longer, and will break this brick wall.
+12. learning is iterative process, so writing as well
 
 ## To improve even further
 

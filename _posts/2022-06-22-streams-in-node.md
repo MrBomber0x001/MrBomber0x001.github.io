@@ -5,7 +5,7 @@ subtitle: How to effiecently use Streams on NodeJs
 cover-img: /assets/img/cover.jfif
 thumbnail-img: /assets/img/t-sql.jpg
 share-img: /assets/img/path.jpg
-tags: [js, oop]
+tags: [nodejs]
 ---
 
 ## Table of contents
