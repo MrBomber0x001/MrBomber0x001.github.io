@@ -29,3 +29,17 @@ tags: [productivity]
 
 وهي دي مرحلةالنشر وانا بنشر اساسي علي هاش نود ولكن هنا بيتكون للمرحلة التانيه فقط
 لاني بتأكد اني خرجت المقال من تجت ايدي بعد ما عصرته وجبت اخره
+
+## Technialities
+
+1. provide resources and further read section
+2. provide illustrations
+3. do not over simplify notes, or try too hard, just explain it as you would to yourself
+4. you should have a good workflow that easify your writing process, so you know exactly
+
+- how to get ideas
+- how to write them down
+
+5. write on a schedule (for a period (1h to 2h)) and do not look for organization, that comes later in the third process
+6. have a checklist of the topic to know you progress
+7. you should spend more time coding and problem solving than reading or writing [this is so important, so you optimize yourself for learning, not the illusion of learning]
