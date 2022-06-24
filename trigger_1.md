@@ -1,4 +1,4 @@
-# Intro
+# Triggers in T-SQL - Part 2
 
 In this part I will be talking about:
 
@@ -137,7 +137,6 @@ A common use for AFTER triggers is to store historical data in other tables (Hav
 Keep an overview of the changes for the most important tables in your database
 For example, let's say the customer on the Customers table changes his phone number, so we keep this change as well as the old phone number on the 'CustomersHistory' table
 
-<put photo of the two tables>
 The previous table is obtained using an **AFTER** Trigger
 
 ```sql
