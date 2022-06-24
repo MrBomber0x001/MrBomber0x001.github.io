@@ -33,22 +33,18 @@ Because Triggers can be implemented on many levels (system, database, tables, et
 SELECT * FROM sys.server_triggers;
 ```
 
-<put the table>
-
 - [2] Getting the database and table triggers
 
 ```sql
 SELECT * FROM sys.triggers
 ```
 
-<put table>
-
 ### Trigger type and definition
 
 **The type of the trigger (database or table) can be determined from the 'parent_class_desc' column
 ** We can view triggers definition graphically using MS management studio:
 head over to the Triggers folder and right-click on the trigger name and choose 'Script Trigger as -> CREATE TO -> New Query Edit Window'
-<put photo>
+
 ** SQL system views are like virtual tables in the database, helping to reach the information that cannot be reached otherwise
 
 ```sql
