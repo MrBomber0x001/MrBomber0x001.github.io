@@ -17,5 +17,5 @@ tags: [js, system-design]
 3. [Caching](#paragraph2)
 4. [Resources](#resources)
 
-- [ ] this is a simple todo
+- [x] this is a simple todo
 - [ ] Let's see how it's going to be alike
