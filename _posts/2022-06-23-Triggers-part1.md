@@ -5,7 +5,7 @@ subtitle: Lean How to Manage Trigger in T-SQL and properly optimize them
 cover-img: /assets/img/cover.jfif
 thumbnail-img: /assets/img/t-sql.jpg
 share-img: /assets/img/path.jpg
-tags: [books, test]
+tags: [sql]
 ---
 
 ## Introduction
