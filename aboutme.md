@@ -27,24 +27,24 @@ Backend Software Engineer (Node, Go) who loves building and maintaining web appl
 
 ##### Projects
 
-- **E-Commerce API, Udacity Scholarship link**
+- **E-Commerce API, Udacity Scholarship** <a href="https://github.com/MrBomber0x001/Udacity-Storefront-api">link</a>
   - Creates an API for users to track their orders besides adding, deleting or modifying products from orders.
   - The API is built on top of NodeJs, Typescript, Express, PostgreSQL using migrations and documentation best practices.
   - The API follows a TDD best practices, and was unit and integration tested using jasmine.
   - This project was mainly part of the Udacity Scholarship and fully reviewed by a Udacity’s software engineer.
 
-- **Food Delivery Application link**
+- **Food Delivery Application** <a href="https://github.com/MrBomber0x001/Food-Delivery-App">link</a>
   - Connects user, markets and delivery man together to make user able to track his shipment, The user can add payments or withdraw it, cancel an order and can be notified based on shipment status
   - The web application is built on top of NodeJs, Express, MongoDB, Stripe, WebSockets.
   - The project is tested using unit and integration testing.
 
-- **Image Processing API, Udacity Scholarship link**
+- **Image Processing API, Udacity Scholarship** <a href="https://github.com/MrBomber0x001/Udacity-Image-Processing-API">link</a>
   - Creates an API for user to process Images as he would like.
   - The API is created on top of (NodeJS, Typescript, PostgreSQL).
   - The API is unit tested using jasmine.
   - This project was mainly for Udacity Full Stack Scholarship.
 
-- **Hosting full stack application, Udacity Scholarship link**
+- **Hosting full stack application, Udacity Scholarship** <a href="https://github.com/MrBomber0x001/udacity-hosting-fullstack">link</a>
   - Hosting the backend code on AWS EB and RDS
   - Hosting the frontend code on AWS S3
   - Writing the automated deployment script using CircleCI as a pipeline service
