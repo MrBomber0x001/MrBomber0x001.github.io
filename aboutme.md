@@ -4,7 +4,8 @@ title: About me
 subtitle: Why you'd want to go on a date with me
 ---
 
-Yousef Mahmoud Meska
+Hola 👋, I am Yousef, A
+Backend Software Engineer (Node, Go) who loves building and maintaining web application putting performance and security in mind.
 
 ##### Skills
 
