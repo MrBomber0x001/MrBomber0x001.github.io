@@ -104,7 +104,6 @@ To get information about the current triggers you've on your server, we'll explo
 SELECT * FROM sys.triggers
 ```
 
-<put here the table>
 this table contains about 13 attributes, but we are going to explore the most important ones.
 
 | name | role |
@@ -131,11 +130,7 @@ What if you need to identify the events that will fire a trigger?
 
 this information is stored in `sys.trigger_events`
 
-<put here the table>
-
 you don't need to memorize all of the events that will fire the triggers, they are contained in `sys.trigger_event_types`
-
-<put the table>
 
 the problem here is that the information is divided into many tables, if you want to form a good answer
 
@@ -229,8 +224,6 @@ This will raise an error, but also we got a **permanent** record that we can use
 ```sql
 SELECT * FROM TriggerAudit
 ```
-
-<put the table>
 
 How can we identify the triggers on a certain table or view?
 using `sys.objects` table which contains information about the objects on the database.
