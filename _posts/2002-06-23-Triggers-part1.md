@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Triggers In T-SQL - Part 2
+title: Triggers In T-SQL - Part 1
 subtitle: Lean How to Manage Trigger in T-SQL and properly optimize them
 cover-img: /assets/img/cover.jfif
 thumbnail-img: /assets/img/t-sql.jpg
