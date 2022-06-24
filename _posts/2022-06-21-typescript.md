@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Fuck you typescript
+title: Modular Typescript
 subtitle: 
 cover-img: /assets/img/cover.jfif
 thumbnail-img: /assets/img/t-sql.jpg
@@ -795,3 +795,536 @@ interface Persons {
   data: Person[]
 }
 ```
+
+## Welcome to New Typescript
+
+# Typescipt
+
+<details>
+<summary>
+<strong>when to use never vs void?</strong>
+</summary>
+
+never is used when we've a non-reachable code i.e (never going to return a value)
+
+```js
+function onError(error: string): never {
+    throw new Error(error);
+    // the rest is not reachable
+}
+```
+
+void is perfectly used when the function does not return anything
+
+```js
+let x:number = 1;
+function changeX(y: number): void{
+    x =y;
+}
+changeX(2);
+```
+
+</details>
+
+<details>
+<summary><strong>what is union type?</strong></summary>
+union type is way of telling typescript to choose one of serveral types
+
+```js
+let x: string = 'meska';
+
+function mutateX(size: 'medium' | 'large' | 'small'): void {
+    x = size;
+}
+mutateX('large');
+```
+
+</details>
+
+<details>
+<summary>what's tuples and specify a use case? does it differes from union types?</summary>
+
+tuples is an array-like data structure which give us the flexibility of creating array of different types,
+it's useful when we're dealing with 3rd party apis or libs
+it differes from union types, tuples specifiy types inside an array and we must conform to the order we've written, while union type give us the flexibity of optionality!
+
+```js
+let apiReturns: [string, number, boolean];
+apiReturns = ['ypusef', 1, true];
+```
+
+</details>
+--
+
+<details>
+<summary><strong>what's type alias?</strong></summary>
+Instead of attaching type directly to the variable when creating it, use a placeholder
+Type alias is not going to be compiled down to vaniall js, it's a virtual [concept].
+
+```js
+type Size = 'small' | 'large' | 'medium';
+type Callback = (size: Size) => void;
+let selectedSize: Size = 'small';
+let selectSize: Callback = (x) => {
+    selectedSize = x;
+}
+selectSize("large")
+```
+
+</details>
+
+<details><summary><strong>what's type assertion?</strong></summary>
+you can think of it as casting.
+
+```js
+type Pizza = { name: string, toppings: number };
+const pizza: Pizza = { name: "Meska", toppings: 3 };
+const serialized = JSON.stringify(pizza);
+console.log(serialized);
+function getNameFromJSON(obj: string) {
+    return (<Pizza>JSON.parse(obj)).name; // or the new method r
+    return (JSON.parse(obj) as Pizza).name
+}
+console.log(getNameFromJSON(serialized));
+```
+
+</details>
+
+<details>
+<summary>
+<strong>what's enum? what are the appropiate use cases for it?</strong>
+</summary>
+By Default we get numeric values from enum and we can lookup using string lookup or numeric lookup, it works the two ways!
+But this not always the case, we can customize enum to use anythin instead of numerics
+
+```js
+enum Sizes {
+    Small,
+    Large,
+    Medium
+}
+console.log(Sizes.Small, Sizes[Sizes.Small]);
+```
+
+Enum follows #reverse_mapping technique
+
+```js
+// reverse mapping in simple terms
+let names = 'yousef,mahmoud,meska';
+let arr = [];
+let counter = 0;
+names.split(',').map((item) => {
+    arr[arr[item] = counter++] = String(item);
+})
+
+console.log(arr);
+console.log(arr[0]);
+console.log(arr['yousef']);
+```
+
+we can also extend enum
+
+```js
+enum Sizes {
+    ExtendedLarge = 3
+}
+```
+
+Using String Enums, we can't use #reverse_mapping
+
+```js
+enum Sizes {
+    Small = 'small',
+    Large = 'large'
+}
+let selectesSize: Sizes = Sizes.Large;
+function updateSize(size: Sizes): void => {
+    selectedSize = size;
+}
+updateSize(Sizes.Small);
+```
+
+</details>
+
+<details>
+<summary><strong>What's difference type vs interface? and what's the perfect usage [when to use perfectly]?</strong></summary>
+Interface is a special type in typescript, allow us shape the structure of partivualr objectwe can get extended feature using interfaces over types. [will be discussed later]
+Interfaces is virual also like type, it's not going to be compiled down
+we can compose interfaces together, or extending [inheriting]
+
+```ts
+interface Pizza {
+    name: string;
+    sizes: string[];
+    getAvaibleSizes(): string;
+}
+interface Pizzas{
+    pizzas: Pizza[];
+}
+let pizza: Pizza;
+
+type getAvaibleSizes = () => string[];
+function createPizza(name: string, sizes: string[]): Pizza {
+    return {
+        name, 
+        sizes,
+        getAvaibleSizes(){
+            return this.sizes;
+        }
+    } // or as Pizza
+}
+pizza = createPizza("Pepporin", ["small", "medium"])
+```
+
+**Dynamic Properties**
+if we need to use a dynmaic property that does not exist on the interface like `person['xyz'] = 'some value'`,
+ what we can do is define this structure also on the interface
+
+```ts
+interface Size {
+    
+}
+interface Pizza extends Size{
+    name: string;
+    getAvaibleSize(): string;
+    [key: number]: string;
+    [key: string]: any
+}
+
+let pizza: Pizza;
+pizza[1] = 'yousef'
+pizza['xyz'] = 'meska';
+
+```
+
+</details>
+
+<details>
+<summary>Class</summary>
+
+**Access Modifiers**
+
+access modifiers don't get compiled down to js, because it's only on typescript world<br>
+access modifiers are applicable to methods and properties
+`public`, `private`, `readonly`, `protected`
+
+```ts
+class Pizza {
+    name: string;
+    toppings: string[] = [];
+    constructor(name: string){
+        this.name = name;
+    }
+    public addTopping(topping: string){
+        return this.toppings.push(topping);
+    }
+    private listToppings(){
+        return this.toppings;
+    }
+}
+let pizza = new Pizza("Meska");
+pizza.addTopping("welcome");
+```
+
+if you don't specify `public` it will be the same
+for `private properties` we can do this
+
+```ts
+class Pizza {
+    private toppings: string[] = [];
+    constructor(private name: string, readonly age: number){};
+    public addTopping(topping: string){
+        return this.toppings.push(topping);
+    }
+    private listToppings(){P
+    
+        return this.toppings;
+    }
+}
+```
+
+**Setters and Getters**
+Setters and Getters are always public.
+
+```ts
+class Sizes {
+    constructor(public sizes: string[]){}
+    set avSizes(sizes: string){
+        this.sizes = sizes;
+    }
+    get avSizes(){
+        return this.sizes;
+    }
+}
+let sizes = new Sizes(['small', 'large']);
+sizes.avSizes = ['sm', 'lg', 'xlg']; // invoke setter
+console.log(sizes.avSizes); // invoke getter
+
+```
+
+in plain old js this was approached by
+
+```js
+var Sizes = (function(){
+    function Sizes(sizes){
+        this.sizes = sizes;
+    }
+    Object.defineProperty(Sizes.prototype, "avSize", {
+        get: function(){
+            return this.sizes;
+        },
+        set: function(sizes){
+            this.sizes = sizes;
+        },
+        enumerable: true,
+        configurable: true
+        
+    })
+    return Sizes
+})()
+```
+
+**Inheriting From Base Class**
+
+```ts
+class Sizes {
+    constructor(public sizes: string[]) { }
+    set availableSizes(sizes: string[]) {
+        this.sizes = sizes;
+    }
+    get availableSizes() {
+        return this.sizes;
+    }
+}
+
+class Person extends Sizes {
+    toppings: string[] = [];
+    constructor(private name: string, public sizes: string[]) {
+        super(sizes);
+    }
+    addTopping(topping: string) {
+        this.toppings.push(topping);
+    }
+}
+
+let y = new Person('yousef meska', ['x', 'l']);
+console.log(y.availableSizes);
+```
+
+well, altought this approach is working, but one thing is not fully controlled
+we still can instantiate from Sizes class, and we don't need this behaviour
+
+```ts
+new Size(['small', 'large']);
+```
+
+the solution is
+**Abstract Class**
+A class we can inherit from, and cannot instantiate from.
+
+```ts
+abstract class ClassName{}
+```
+
+what if we need to access sizes to update it from Person class, if sizes was private on Sizes class?
+`protected` comes into play, the ability to access private member when we extend a class
+
+```ts
+class Sizes {
+    constructor(protected sizes: string[]){}
+}
+```
+
+**Interface with Classes**
+we can't create specific describtion for setters and getters, but the function itself can be
+
+```ts
+interface SizesInterface{
+    availableSizes(): string[];
+}
+```
+
+</details>
+
+<details>
+<summary>Call, apply, bind</summary>
+
+```js
+
+// /**
+//  * Topic: Arrow functions, this, call, apply, bind
+//  */
+// const person = {
+//     name: "yousef",
+//     age: 24,
+//     getName: function () {
+//         setTimeout(function () {
+//             console.log(this); // ??
+//             console.dir(arguments)
+//         }, 1000, ['welcome', 'hi'], ['meskas']);
+//     },
+//     getAge: function () {
+//         const self = this;
+//         setTimeout(function () {
+//             console.log(self); // ??
+
+//         })
+//     },
+//     getSize: function () {
+//         setTimeout(() => {
+//             console.log(this); // ??
+//             console.log(arguments) // ??
+//         })
+//     },
+//     getMe: () => {
+//         console.log(this); // ??
+//         (function () {
+//             console.log(this); // ??
+//         })()
+//     }
+// }
+
+
+/** Predicting the value of 'this' is not a magic.
+ * where the function get executed determine the value of this
+ * .getName(); get executed on the person scope.
+ * but setTimeout passes a function which that function get exectud on the setTimeout scope [another world for that function]
+ * Arrow functions does not create a new scope, neither bind this.
+ * so to sum up, what determines the value of this, is where it's being called and how
+ */
+
+
+```
+
+```js
+console.log('-----------------this-----------');
+
+function MyFunction(...text: string[]) {
+    console.log('Function::', this, text);
+}
+MyFunction(); // === window.MyFunction() or global.MyFunction(); so this is bind to window.
+
+const obj = {
+    func() {
+        console.log('Object::', this);
+    }
+}
+obj.func(); //so this is bind to obj.
+class MyClass {
+    myMethod() {
+        console.log(`Class::`, this);
+    }
+}
+const myInstance = new MyClass();
+myInstance.myMethod(); // so this is bind to myInstance
+
+// call, apply, bind
+
+MyFunction();
+
+MyFunction.call(obj, 'abc', 'def');
+MyFunction.apply(obj, ['abc', 'def'])
+MyFunction.call([]);
+const bindFunction = MyFunction.bind(obj, 1, 2, 3, 4)
+// or bindFunction(1,2,3,4)
+bindFunction();
+
+/**
+
+* Call and Apply invokes the function
+* Bind does not invoke the function
+* Bind return a new brand function with different context
+ */
+
+```
+
+</details>
+
+<details>
+<summary> Lexical Scoping and Arrow functions</summary>
+
+```js
+class MyClass {
+    myMethod() {
+        const foo = 123;
+        const that = this;
+        console.log('1', this);
+        setTimeout(function () {
+            console.log('2', this);
+            console.log('3', that)
+        }, 2000)
+
+        setTimeout(() => {
+            console.log('4', this);
+        }, 3000)
+    }
+}
+const instance = new MyClass();
+instance.myMethod();
+```
+
+</details>
+
+<details>
+<summary>this and type checking</summary>
+
+```js
+const elem = document.querySelector(".click");
+
+// event is still the first element.
+function handleClick(this: HTMLAnchorElement, event: Event) {
+    event.preventDefault()
+    console.log(this);
+    console.log(this.href)
+}
+
+elem?.addEventListener('click', handleClick, false);
+
+```
+
+</details>
+
+<details>
+<summary>
+type query using typeof
+</summary>
+
+```js
+const person = {
+    name: 'yousef',
+    age: 22
+}
+
+// getting the the type of person which is {name: string; age: number;}
+type Person = typeof person;
+const anotherPerson: Person = {
+    name: 'john',
+    age: 30
+}
+const anotherPersonn: typeof person = {
+    name: 'xx',
+    age: 22
+}
+
+// Javascript
+typeof person // 'object'
+```
+
+</details>
+
+<details>
+<summary>
+keyof
+
+</summary>
+
+```Js
+let person = {
+    name: "Yousef",
+    age: 24
+}
+
+```
+
+</details>
+what's duck typing ? and how does this apply to typescript?
