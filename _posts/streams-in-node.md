@@ -8,6 +8,9 @@ share-img: /assets/img/path.jpg
 tags: [nodejs]
 ---
 
+TODO: How to use streams with typescript also
+TODO: implement the video processing server which accept uploading and streaming videos
+
 ## Table of contents
 
 1. [Introduction](#introduction)
