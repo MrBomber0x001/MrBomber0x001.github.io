@@ -14,7 +14,7 @@ Backend Software Engineer (Node, Go) who loves building and maintaining web appl
 ##### Tech Stack
 
 - Technologies: Docker, GraphQl, Express, NestJs, Nginx.
-- Languages: Javascript, NodeJs, Typescript, C++, bash.
+- Languages: Javascript, NodeJs, Typescript, Golang, C++, bash.
 - Databases: PostgreSQL, MySQl, MongoDB, Redis.
 - Deployment: AWS, CircleCI (CI/CD), Heroku, Vercel.
 
@@ -35,7 +35,7 @@ Backend Software Engineer (Node, Go) who loves building and maintaining web appl
 - Experience with Searching solutions (`ElasticSearch`).
 - Experience in different RDBMS - `Oracle`, `SQL Server`, `MySQL`, `PostgreSQL`.
 - Good understanding of OSI model and related protocols (`TCP`, `UDP`, `DNS`, `ARP`, `FTP`, `SSH`, `TLS`), and good knowledge about networking tools like iptables, wireshark, tcpdump, and more.
-- Good knowlege and Practice of (`WebRTC`, `WebSockets`, `Worker Threads`)
+- Good knowlege and Practice of (`WebRTC`, `WebSockets`, `RPC`, `gRPC`)
 - Understanding of `OIDC` and `OAuth 2.0` protocols.
 - Good understanding of digital cryptography and cryptography essential concepts.
 
