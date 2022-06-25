@@ -19,6 +19,24 @@ Backend Software Engineer (Node, Go) who loves building and maintaining web appl
 - Deployment: AWS, CircleCI (CI/CD), Heroku, Vercel.
 - Other: Unit Testing, Integrations Testing
 
+- Good understanding of OOP & Functional programming.
+- Good understanding Test Driven Development and Unit, Integration, E2E Testing.
+- Agile Methodologies - Scrum, Kanban.
+- Good knowledge in Linux Configuration & shell scripting.
+- Distributed Programming, messaging, stream processing and data pipelines (`RabbitMQ`, `Kafka`).
+- Good background in Web Services (REST, GraphQl)
+- Good understand parallelism and concurrency and related patterns (e.g. CSP) and its implementations in golang
+- Basic knowledge Linux programming (syscalls, filesystems, namespaces and others).
+- Basic understanding of the different storage types (object, block, file) and its use cases.
+- Basic understanding Hypervisors and containerization (the theory and practices).
+- Good understanding of RDBMS, NoSQL databases, Big Data and Database Sharding techniques.
+- Basic knowledge and experience about NoSQL solutions such as `MongoDB`, `Redis`, `couchDB`.
+- Experience with Searching solutions (`ElasticSearch`).
+- Experience in different RDBMS - `Oracle`, `SQL Server`, `MySQL`, `PostgreSQL`.
+- Good understanding of OSI model and related protocols (`TCP`, `UDP`, `DNS`, `ARP`, `FTP`, `SSH`, `TLS`), and good knowledge about networking tools like iptables, wireshark, tcpdump, and more.
+- Understanding of `OIDC` and `OAuth 2.0` protocols.
+- Good understanding of digital cryptography and cryptography essential concepts.
+
 ##### Education
 
 - Udacity Advanced Full Stack Nanodegree.
@@ -29,23 +47,26 @@ Backend Software Engineer (Node, Go) who loves building and maintaining web appl
 
 - **E-Commerce API, Udacity Scholarship** <a href="https://github.com/MrBomber0x001/Udacity-Storefront-api">link</a>
   - Creates an API for users to track their orders besides adding, deleting or modifying products from orders.
+  - Implemented User Authentication, Authorizations using JWT (Access and Refresh Tokens).
   - The API is built on top of NodeJs, Typescript, Express, PostgreSQL using migrations and documentation best practices.
   - The API follows a TDD best practices, and was unit and integration tested using jasmine.
   - This project was mainly part of the Udacity Scholarship and fully reviewed by a Udacity’s software engineer.
 
 - **Food Delivery Application** <a href="https://github.com/MrBomber0x001/Food-Delivery-App">link</a>
   - Connects user, markets and delivery man together to make user able to track his shipment, The user can add payments or withdraw it, cancel an order and can be notified based on shipment status
+  - Setup and integrate the Stripe payment gateways for collecting payments
   - The web application is built on top of NodeJs, Express, MongoDB, Stripe, WebSockets.
   - The project is tested using unit and integration testing.
 
 - **Image Processing API, Udacity Scholarship** <a href="https://github.com/MrBomber0x001/Udacity-Image-Processing-API">link</a>
-  - Creates an API for user to process Images as he would like.
+  - Creates an API for user to process Images.
   - The API is created on top of (NodeJS, Typescript, PostgreSQL).
   - The API is unit tested using jasmine.
   - This project was mainly for Udacity Full Stack Scholarship.
 
 - **Hosting full stack application, Udacity Scholarship** <a href="https://github.com/MrBomber0x001/udacity-hosting-fullstack">link</a>
-  - Hosting the backend code on AWS EB and RDS
-  - Hosting the frontend code on AWS S3
-  - Writing the automated deployment script using CircleCI as a pipeline service
-  - Writing the unit and integration testing for the frontend and backend code.
+  - I was tasked to host this full stack application (Back, Front) on AWS besides writing the automated deployment script
+  - Hosted the backend code on AWS EB and RDS
+  - Hosted the frontend code on AWS S3
+  - Wrote the automated deployment script using CircleCI as a pipeline service
+  - Wrote the unit and integration testing for the frontend and backend code.
