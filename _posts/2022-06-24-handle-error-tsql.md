@@ -13,16 +13,11 @@ tags: [sql]
 <div style="width:100%;height:0;padding-bottom:56%;position:relative;"><iframe src="https://giphy.com/embed/nVTa8D8zJUc2A" width="100%" height="100%" style="position:absolute" frameBorder="0" class="giphy-embed" allowFullScreen></iframe></div><p><a href="https://giphy.com/gifs/nVTa8D8zJUc2A">via GIPHY</a></p>
 
 As Software Engineer working with databases, you should be comfortable reading SQL errors to properly fix them, so it's an essential skill for you as a developer.
-As well as understanding what Transactions are and how they can affect your application.
-Getting comfortable with Tran
 
-writing transaction is an essential skill that will make your database faster
-**Table of contents:**
+## Table of Contents
 
--
-- Error Handling
-- What are Transactions and how do work with them.
-- Concurrency in Transaction.
+- Starting with error handling
+- Raising, throwing and customizing your errors
 
 ## Error Handling
 
@@ -35,22 +30,24 @@ INSERT INTO products (product_name, stock, price)
 VALUES ('Trek Powerfly 5 - 2018', 10, 3499.99);
 ```
 
-```sql
 and you tried to insert a product with a name that already exits
 insert command
 
-what do you think you will get?
-of course an error
-```sql
+what do you think you will get? <br>
+Of course an error
+
+```
 Violation of UNIQUE KEY constraint 'unique_product_name'.
 Cannot insert duplicate key in object 'dbo.products'.
 The duplicate key value is (Trek Powerfly 5 - 2018).
 ```
 
 we can handle this kind of Error using
-Try catch Block
+`Try catch` Block
 The syntax of try-catch on SQL is nearly similar to the ones on programming languages
 you begin with try and end with catch, you see it's that simple.
+
+The General syntax
 
 ```sql
 BEGIN TRY
@@ -99,12 +96,12 @@ an example
 ```sql
 
 BEGIN TRY
-INSERT INTO products (product_name, stock, price)
-VALUES ('Super new Trek Powerfly', 5, 1499.99);
-SELECT 'Product inserted correctly!' AS message;
+    INSERT INTO products (product_name, stock, price)
+    VALUES ('Super new Trek Powerfly', 5, 1499.99);
+    SELECT 'Product inserted correctly!' AS message;
 END TRY
 BEGIN CATCH
-SELECT 'An error occurred! You are in the CATCH block' AS message;
+    SELECT 'An error occurred! You are in the CATCH block' AS message;
 END CATCH
 ```
 
@@ -140,7 +137,6 @@ You are in the second CATCH block' AS message;
 END CATCH
 END CATCH
 end catch
-```
 
 -- Set up the TRY block
 BEGIN TRY
@@ -172,15 +168,18 @@ BEGIN CATCH
         SELECT 'An error occurred inserting the error! You are in the nested CATCH block';
     END CATCH
 END CATCH
+```
 
-## Error Anatomy and uncatchable error
+### Error Anatomy and uncatchable error
+
+Not all errors are catchable
 
 ```sql
 INSERT INTO products (product_name, stock, price)
 VALUES ('Trek Powerfly 5 - 2018', 10, 3499.99);
 ```
 
-```sql
+```
 Msg 2627, Level 14, State 1, Line 1
 Violation of UNIQUE KEY constraint 'unique_name'.
 Cannot insert duplicate key in object 'dbo.products'.
@@ -190,14 +189,14 @@ The duplicate key value is (Trek Powerfly 5 - 2018).
 the first line is error number
 sql errors  from 1 to 49999
 
-you can also create your own starting from 50001
+you can also create your own starting from `50001`
 
-select * from sys.message -> to know the complete log of error numbers
+`select * from sys.message` -> to know the complete log of error numbers
 the second value is severity level
 
-from 0 - 10: informational messages (warnings)
-from 11 - 16" errors that can be corrected by the user (constraint violation, etc.)
-from 17 - 26: other errors (software problems, fatal errors)
+from `0 - 10`: informational messages (warnings)
+from `11 - 16`: errors that can be corrected by the user (constraint violation, etc.)
+from `17 - 26`: other errors (software problems, fatal errors)
 you can see the whole list throught the docuemntation
 
 the thrid value is the state: it give you more informatioj about the error
@@ -225,20 +224,27 @@ END TRy
 BEGIN CATCH
     select 'you are in the CATCH Block' as message;
 end catch
+```
 
 notice the outout?
 
+```
 Msg 207, Level 16, State 1, Line 2
 Invalid column name 'non_existent_column'.
+```
 
-## Giving information about error
+### Giving information about error
+
+```
 Msg 2627, Level 14, State 1, Line 1
 Violation of UNIQUE KEY constraint 'unique_name'.
 Cannot insert duplicate key in object 'dbo.products'.
 The duplicate key value is (Trek Powerfly 5 - 2018).
 this is the original error
+```
 
 and this is the error returned from catch block
+
 ```sql
 BEGIN TRY
 INSERT INTO products (product_name, stock, price)
@@ -261,12 +267,12 @@ END CATCH
 sometimes the default esrror the query throws is very useful, and by overriding it using CATCH with error statement we lose the default, however can still retrieve it using
 Error functions
 
-ERROR_NUMBER() returns the number of the error.
-ERROR_SEVERITY() returns te error severity (11-19)
-ERROR_STATE()  returns the state of the error
-ERROR_LINE() retuens the numberl of the line error
-ERROR_PROCEDURE() returns the name of the sotred proc/trigger, Null if there i not stored pro/trig
-Error_message()
+`ERROR_NUMBER()` returns the number of the error.
+`ERROR_SEVERITY()` returns te error severity (11-19)
+`ERROR_STATE()`  returns the state of the error
+`ERROR_LINE()` retuens the numberl of the line error
+`ERROR_PROCEDURE()` returns the name of the sotred proc/trigger, Null if there i not stored pro/trig
+`Error_message()`
 an example
 
 ```sql
@@ -375,7 +381,7 @@ END CATCH
 
 ```
 
-# Raising, throwing, and customizing your errors
+## Raising, throwing, and customizing your errors
 
 in this section we will learn how to raise errors, re-throw original errors, and create your own defined errors
 Raise errors statements
@@ -395,7 +401,7 @@ you can optionally add arguments, like strings or numbers
 
 if the message string has some parameter placeholders such as %s or %d, these arguments will replace them
 
-#### RAISERROR with message string
+### RAISERROR with message string
 
 ```sql
 if not exits( select * from staff where staff_id = 15)
