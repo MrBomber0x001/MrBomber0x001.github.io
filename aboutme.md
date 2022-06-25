@@ -17,8 +17,8 @@ Backend Software Engineer (Node, Go) who loves building and maintaining web appl
 - Languages: Javascript, NodeJs, Typescript, C++, bash.
 - Databases: PostgreSQL, MySQl, MongoDB, Redis.
 - Deployment: AWS, CircleCI (CI/CD), Heroku, Vercel.
-- Other: Unit Testing, Integrations Testing
 
+<hr>
 - Good understanding of OOP & Functional programming.
 - Good understanding Test Driven Development and Unit, Integration, E2E Testing.
 - Agile Methodologies - Scrum, Kanban.
@@ -41,7 +41,7 @@ Backend Software Engineer (Node, Go) who loves building and maintaining web appl
 
 - Udacity Advanced Full Stack Nanodegree.
 - Electronics Engineering, Menoufia University, Computer Science and Engineering
-- Related Coursework: OS, Data structures, Algorithms, Design Patterns, Software Engineering, Compilers, Distributed Systems
+- Related Coursework: OS, Data structures, Algorithms, Design Patterns, Software Engineering, Compilers, Networking, Distributed Systems,
 
 ##### Projects
 
