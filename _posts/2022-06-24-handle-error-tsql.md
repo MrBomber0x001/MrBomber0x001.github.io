@@ -10,6 +10,8 @@ tags: [sql]
 
 ## Introduction
 
+<div style="width:100%;height:0;padding-bottom:56%;position:relative;"><iframe src="https://giphy.com/embed/nVTa8D8zJUc2A" width="100%" height="100%" style="position:absolute" frameBorder="0" class="giphy-embed" allowFullScreen></iframe></div><p><a href="https://giphy.com/gifs/nVTa8D8zJUc2A">via GIPHY</a></p>
+
 As Software Engineer working with databases, you should be comfortable reading SQL errors to properly fix them, so it's an essential skill for you as a developer.
 As well as understanding what Transactions are and how they can affect your application.
 Getting comfortable with Tran
