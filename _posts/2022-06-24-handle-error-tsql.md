@@ -1,6 +1,6 @@
 ---
 layout: post
-title: How to properly handle errors in t-sql
+title: How to Properly Handle T-SQL Errors
 subtitle: 
 cover-img: /assets/img/cover.jfif
 thumbnail-img: /assets/img/t-sql.jpg
@@ -16,22 +16,20 @@ As Software Engineer working with databases, you should be comfortable reading S
 
 ## Table of Contents
 
-- Starting with error handling
-- Raising, throwing and customizing your errors
+1. Starting with error handling
+2. Raising, throwing and customizing your errors
 
 ## Error Handling
 
 let's begin with an example to demonstrate the concept of errors on SQL server
 Imagine you have a database consisting of Products, Buyers, Staff, and Orders
 and you have a unique constraint on the product table (on product_name)
+And you tried to insert a product with a name that already exits
 
 ```sql
 INSERT INTO products (product_name, stock, price)
 VALUES ('Trek Powerfly 5 - 2018', 10, 3499.99);
 ```
-
-and you tried to insert a product with a name that already exits
-insert command
 
 what do you think you will get? <br>
 Of course an error
@@ -42,10 +40,9 @@ Cannot insert duplicate key in object 'dbo.products'.
 The duplicate key value is (Trek Powerfly 5 - 2018).
 ```
 
-we can handle this kind of Error using
-`Try catch` Block
-The syntax of try-catch on SQL is nearly similar to the ones on programming languages
-you begin with try and end with catch, you see it's that simple.
+we can handle this kind of Error using `Try catch` Block. <br>
+The syntax of try-catch on SQL is nearly similar to the ones on programming languages,
+you begin with try and end with catch, you see it's that simple 😄. <br>
 
 The General syntax
 
@@ -59,39 +56,32 @@ END CATCH
 [ ; ]
 ```
 
-In case of your query inside Try throw an error, then
-you place your error handling statements with the catch block
+In case of your query inside Try throw an error, then you place your error handling statements with the catch block. <br>
 If there is no error, the catch block is skipped
 
-an example of a statement that fails
+**An example of a statement that fails**
 
 ```sql
 BEGIN TRY
-INSERT INTO products (product_name, stock, price)
-VALUES ('Trek Powerfly 5 - 2018', 10, 3499.99);
-SELECT 'Product inserted correctly!' AS message;
+    INSERT INTO products (product_name, stock, price)
+    VALUES ('Trek Powerfly 5 - 2018', 10, 3499.99);
+    SELECT 'Product inserted correctly!' AS message;
 END TRY
 BEGIN CATCH
-SELECT 'An error occurred! You are in the CATCH block' AS message;
+    SELECT 'An error occurred! You are in the CATCH block' AS message;
 END CATCH
 ```
 
-```sql
+```
 | message
 |
 |-----------------------------------------------|
 | An error occurred! You are in the CATCH block |
 ```
 
-an example of a statement that works
+**An example of successful Insertion**
 
-```sql
-
-
-```
-
-A try block or a catch block can nest another try-catch blog
-an example
+l
 
 ```sql
 
@@ -105,38 +95,45 @@ BEGIN CATCH
 END CATCH
 ```
 
-```sql
+```
 | message
 |
 |-----------------------------|
 | Product inserted correctly! |
 ```
 
+### Nested try..catch
+
+A try block or a catch block can `nest` another try-catch block. <br>
+**an example of nested try-catch**
+
 Get your hands dirty
 
 nesting
 
 ```sql
-BEGin try
-INSERT INTO products (product_name, stock, price)
-VALUES ('Trek Powerfly 5 - 2018', 10, 3499.99);
-SELECT 'Product inserted correctly!' AS message
-end try
-
-begin catch
-SELECT 'An error occurred inserting the product!
-You are in the first CATCH block' AS message;
-BEGIN TRY
-INSERT INTO myErrors
-VALUES ('ERROR!');
-SELECT 'Error inserted correctly!' AS message;
+BEGIN try
+    INSERT INTO products (product_name, stock, price)
+    VALUES ('Trek Powerfly 5 - 2018', 10, 3499.99);
+    SELECT 'Product inserted correctly!' AS message
 END TRY
-BEGIN CATCH
-SELECT 'An error occurred inserting the error!
-You are in the second CATCH block' AS message;
+
+BEGIN catch
+    SELECT 'An error occurred inserting the product!
+            You are in the first CATCH block' AS message;
+    BEGIN TRY
+        INSERT INTO myErrors
+        VALUES ('ERROR!');
+        SELECT 'Error inserted correctly!' AS message;
+    END TRY
+    BEGIN CATCH
+        SELECT 'An error occurred inserting the error!
+        You are in the second CATCH block' AS message;
+    END CATCH
 END CATCH
-END CATCH
-end catch
+```
+
+```sql
 
 -- Set up the TRY block
 BEGIN TRY
@@ -168,11 +165,12 @@ BEGIN CATCH
         SELECT 'An error occurred inserting the error! You are in the nested CATCH block';
     END CATCH
 END CATCH
+
 ```
 
 ### Error Anatomy and uncatchable error
 
-Not all errors are catchable
+> Not all errors are catchable
 
 ```sql
 INSERT INTO products (product_name, stock, price)
@@ -186,7 +184,9 @@ Cannot insert duplicate key in object 'dbo.products'.
 The duplicate key value is (Trek Powerfly 5 - 2018).
 ```
 
-the first line is error number
+Let's break down the error message, to compose a useful information and know exactly how to handle error based on it's Anatomy <br>
+
+* The first line is error number
 sql errors  from 1 to 49999
 
 you can also create your own starting from `50001`
@@ -194,12 +194,12 @@ you can also create your own starting from `50001`
 `select * from sys.message` -> to know the complete log of error numbers
 the second value is severity level
 
-from `0 - 10`: informational messages (warnings)
-from `11 - 16`: errors that can be corrected by the user (constraint violation, etc.)
-from `17 - 26`: other errors (software problems, fatal errors)
+* from `0 - 10`: informational messages (warnings)
+* from `11 - 16`: errors that can be corrected by the user (constraint violation, etc.)
+* from `17 - 26`: other errors (software problems, fatal errors)
 you can see the whole list throught the docuemntation
 
-the thrid value is the state: it give you more informatioj about the error
+* the thrid value is the state: it give you more informatioj about the error
 1: if sql server display error
 0-255: own errors -> to raise your own error
 
@@ -215,7 +215,7 @@ severity of 20 or higher that stopped the connection will not be caught but if i
 
 compilation error: object and column that doesn't exit
 
-an example
+**An example**
 
 ```sql
 BEGIN TRY
@@ -247,12 +247,12 @@ and this is the error returned from catch block
 
 ```sql
 BEGIN TRY
-INSERT INTO products (product_name, stock, price)
-VALUES ('Trek Powerfly 5 - 2018', 10, 3499.99);
-SELECT 'Product inserted correctly!' AS message;
+    INSERT INTO products (product_name, stock, price)
+    VALUES ('Trek Powerfly 5 - 2018', 10, 3499.99);
+    SELECT 'Product inserted correctly!' AS message;
 END TRY
 BEGIN CATCH
-SELECT 'An error occurred! You are in the CATCH block' AS message;
+    SELECT 'An error occurred! You are in the CATCH block' AS message;
 END CATCH
 ```
 
@@ -264,8 +264,8 @@ END CATCH
 | An error occurred! You are in the CATCH block |
 ```
 
-sometimes the default esrror the query throws is very useful, and by overriding it using CATCH with error statement we lose the default, however can still retrieve it using
-Error functions
+sometimes the default error the query throws is very useful, and by overriding it using CATCH with error statement we lose the default, however can still retrieve it using
+**Error functions**
 
 `ERROR_NUMBER()` returns the number of the error.
 `ERROR_SEVERITY()` returns te error severity (11-19)
@@ -291,19 +291,12 @@ ERROR_MESSAGE() AS Error_message;
 END CATCH
 ```
 
-```sql
-| Error_number| Error_severity| Error_state| Error_procedure| Error_line| Error_message
-|
-|-------------|---------------|------------|----------------|-----------|-----------------------------------------------------|
-| 2627
-| 14
-| 1
-| NULL
-| 2
-| Violation of UNIQUE KEY constraint 'unique_name'... |
-```
+| Error_number| Error_severity| Error_state| Error_procedure| Error_line| Error_message|
+|-------------|---------------|------------|----------------|-----------|--------------|
+| 2627 | 14 | 1 | NULL | 2 | Violation of UNIQUE KEY constraint 'unique_name'... |
 
-we can't use errir functions outside the catch block
+⛔**Warning**: <br>
+> We can't use error functions outside the catch block
 
 ```sql
 SELECT
@@ -321,25 +314,26 @@ we can use it inside nested try and catch
 
 ```sql
 BEGIN TRY
-INSERT INTO products (product_name, stock, price)
-VALUES ('Trek Powerfly 5 - 2018', 10, 3499.99);
+    INSERT INTO products (product_name, stock, price)
+    VALUES ('Trek Powerfly 5 - 2018', 10, 3499.99);
 END TRY
-BEGIN CATCH
-BEGIN TRY
+    BEGIN CATCH
+    BEGIN TRY
 INSERT INTO myErrors
-VALUES ('ERROR!')
+    VALUES ('ERROR!')
 END TRY
 BEGIN CATCH
-SELECT
-'Outer CATCH block' AS 'Error_from',
-ERROR_NUMBER() AS Error_number,
-ERROR_MESSAGE() AS Error_message;
-END CATCH
+    SELECT
+    'Outer CATCH block' AS 'Error_from',
+    ERROR_NUMBER() AS Error_number,
+    ERROR_MESSAGE() AS Error_message;
+    END CATCH
 END CATCH
 ```
 
 ### exercise
 
+```sql
 -- Set up the TRY block
 BEGIN TRY
     SELECT 'Total: ' + SUM(price * quantity) AS total
@@ -354,6 +348,7 @@ BEGIN CATCH
             ERROR_LINE() AS line,  
             ERROR_MESSAGE() AS message;
 END CATCH
+```
 
 ```sql
 BEGIN TRY
@@ -383,11 +378,16 @@ END CATCH
 
 ## Raising, throwing, and customizing your errors
 
-in this section we will learn how to raise errors, re-throw original errors, and create your own defined errors
+In this section we will learn
+
+* how to raise errors.
+* re-throw original errors.
+* create your own defined errors.
+
 Raise errors statements
 sql server provides two statement to raise errors
 RAISEERROR
-THROW (microsoft recommend using it on new application)
+`THROW` (microsoft recommend using it on new application)
 
 ```sql
 RAISEERROR ssyntax
@@ -406,26 +406,35 @@ if the message string has some parameter placeholders such as %s or %d, these ar
 ```sql
 if not exits( select * from staff where staff_id = 15)
     RAISERROR('No staff member with such id', 16, 1);
-if we don't specicy an error number, the erro number will always be 50000
+```
+
+If we don't specicy an error number, the error number will always be `50000`
 
 let's change the message text with placeholders
+
+```sql
 RAISERROR('No %s member with such id %d. ', 16, 1, 'staff member', 15);
+```
 
+### RAISERROR with error number
 
+```sql
+RAISERROR(60000, 16, 1);
+```
 
-RAISERROR with error number
-RAISERRROR(60000, 16, 1);
-this erorr number comes from sys.messages
+this erorr number comes from `sys.messages`
 
-RIASERROR - Example with Try .. CAtch
+**RIASERROR - Example with Try .. Catch**
+
 ```sql
 from the first slide
 ```
 
-if we changed the severity level from 9 to 11, the error will caruhgy by catch
+if we changed the severity level from 9 to 11, the error will caught by catch
 
 #### Exercise
 
+```sql
 BEGIN TRY
     -- Change the value
     DECLARE @product_id INT = 5;
@@ -437,10 +446,12 @@ END TRY
 BEGIN CATCH
     SELECT ERROR_MESSAGE();
 END CATCH
+```
 
 ### Throw statment
 
-Recommended by Microsoft over RAISERROR statemnt
+> Recommended by Microsoft over RAISERROR statemnt
+
 Genral syntax
 
 ```sql
