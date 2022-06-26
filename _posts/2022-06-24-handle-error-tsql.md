@@ -3,8 +3,8 @@ layout: post
 title: How to Handle T-SQL Errors Properly [Extensive guide]
 subtitle: 
 cover-img: /assets/img/cover.jfif
-thumbnail-img: /assets/img/t-sql.jpg
-share-img: /assets/img/path.jpg
+thumbnail-img: /assets/img/Inkedk0QFwX.jpg
+share-img: /assets/img/Inkedk0QFwX.jpg
 tags: [sql]
 ---
 
@@ -667,7 +667,8 @@ sp_addmessage
       [ replace]
 ```
 
-- msg_id must be greater than 500000
+* msg_id must be greater than 500000
+
 * language is optional, if you don't specify it, it would be the default language of the session.
 
 ```sql
@@ -707,4 +708,4 @@ IF (@current_stock - @sold_bikes < 0)
 
 ## Resources
 
-- <a href="https://campus.datacamp.com/courses/transactions-and-error-handling-in-sql-server/raising-throwing-and-customizing-your-errors">Datacamp - Transaction and Error Handling</a>
+* <a href="https://campus.datacamp.com/courses/transactions-and-error-handling-in-sql-server/raising-throwing-and-customizing-your-errors">Datacamp - Transaction and Error Handling</a>
