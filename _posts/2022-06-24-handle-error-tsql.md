@@ -641,6 +641,70 @@ DECLARE @my_message NVARCHAR(500) = FORMATEMESSAGE('There is no staff member for
 
 notice that the throw statement doesn't allow the specification of the severity, SQL server always sets it to 16
 
+#### FORMATEMESSAGE() with message number
+
+In SQL server we have a view `sys.messages` which contains messages with according `message_id`
+
+```sql
+SELECT * FROM sys.messages
+```
+
+You'll get a view
+
+| message_id | language_id | severity | is_event_logged | text |
+| --- | --- | --- | --- | --- |
+| 101 | 1033 | 15 | 0 | Query not allowed in Waitfor |
+| ... | ... | ... | ... | ... |
+
+we can *choose* any message_id or *add* a new message to this view to customize our errors. <br>
+To add a new message to `sys.messages`, we can execute the `sp_addmessage` stored procedure with the following parameters
+
+```sql
+sp_addmessage
+      msg_id, severity, msgtext,
+      [ language ],
+      [ with_log {'TRUE' | 'FALSE' } ],
+      [ replace]
+```
+
+- msg_id must be greater than 500000
+* language is optional, if you don't specify it, it would be the default language of the session.
+
+```sql
+EXEC sp_addmessage @msgnum = 55000, @severity = 16, @msgtext = 'There is no staff member for id %d. %s', @lang = 'us_english'
+```
+
+we can now use this new message_id on th `FORMATEMESSAGE()`
+
+```sql
+DECLARE @staff_id AS INT = 500;
+DECLARE @my_message NVARCHAR(500) = FORMATEMESSAGE(55000, @staff_id, 'Try with another one');
+
+IF NOT EXISTS (SELECT * FROM staff WHERE staff_id = @staff_id)
+        THROW 50000, @my_messaeg, 1
+```
+
+notice that the throw statement doesn't allow the specification of the severity, SQL server always sets it to 16
+
+**A Detailed Example**
+
+```sql
+EXEC sp_addmessage @msgnum = 50002, @severity = 16, @msgtext = 'There are not enough %s bikes. You only have %d in stock.', @lang = N'us_english';
+
+DECLARE @product_name AS NVARCHAR(50) = 'Trek CrossRip+ - 2018';
+--Change the value
+DECLARE @sold_bikes AS INT = 10;
+DECLARE @current_stock INT;
+
+SELECT @current_stock = stock FROM products WHERE product_name = @product_name;
+
+DECLARE @my_message NVARCHAR(500) =
+ FORMATMESSAGE(50002, @product_name, @current_stock);
+
+IF (@current_stock - @sold_bikes < 0)
+ THROW 50000, @my_message, 1;
+```
+
 ## Resources
 
-* <a href="https://campus.datacamp.com/courses/transactions-and-error-handling-in-sql-server/raising-throwing-and-customizing-your-errors">Datacamp - Transaction and Error Handling</a>
+- <a href="https://campus.datacamp.com/courses/transactions-and-error-handling-in-sql-server/raising-throwing-and-customizing-your-errors">Datacamp - Transaction and Error Handling</a>
