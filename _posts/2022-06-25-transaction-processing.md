@@ -12,24 +12,24 @@ tags: [sql, database]
 
 1. Humble Intro to Transcations.
 2. Transactions in SQL server
+3. Concurrency in Transactions
 
 ## Transactions in SQL Server
 
-Transaction: atomic unit of work that might include multiple activities that **query** and **modify** data
-also
-one or more statements, all or none of the statment are executed
-imagine we have a bank account database,
-we need to transfer $100 from account A to  account B
-the procedure as came to yourmind is
-1-Subtract 100 from A
-2-Add those 100 to B
+**Transaction**: _atomic_ unit of work that might include multiple activities that **query** and **modify** data, A one or more statements, all or none of the statment are executed.
+
+Imagine we have a bank account database, we need to transfer $100 from account A to  account B
+the procedure as came to your mind is
+
+1. Subtract 100 from A
+2. Add those 100 to B
 so the operation here needs to be done as all statement , or not
 
-Genreal Statemnt
+Genreal Statement
 
 ```sql
 BEGIN {TRAN | TRANSACTION }
-   [ { transcation_name | @tran_name_varibalbe}
+   [ { transcation_name | @tran_name_variable}
       [ WITH MARK ['description'] ]
   ]
 [;]
@@ -37,23 +37,24 @@ BEGIN {TRAN | TRANSACTION }
 
 you can optionally add a transcation name and WITH MARK
 
-``` COMMIT [ {TRAN | TRANSACTION } [transcation_name | transc_name_variable ]]
+```sql
+ COMMIT [ {TRAN | TRANSACTION } [transcation_name | transc_name_variable ]]
 [ WITH (DELAYED_DURABILITY = {OFF | ON } )][;]
 ```
 
-when the commit is executed, the effect of transaction can't be reversed
+once the commit is executed, the effect of transaction can't be reversed
 
-ROLLBACK
-reverts the transaction to the beginning of it or a savepoint inside the transaction
+`ROLLBACK` reverts the transaction to the beginning of it or a savepoint inside the transaction
 
-```statement
+```sql
 ROLLBACK {TRAN | TRANSACTION }
 [ {transcation_name | @tran_name_variable | savepoint_name | @savepoint_variable } [;]
 ```
 
 we can define the boundaries (Beginning and end) of the transaction either:
-1- Explicitly
-the start of a transaction is defined by BEGIN and the end either to be
+
+1. Explicitly
+The start of a transaction is defined by BEGIN and the end either to be
 COMMIT (in case you of success) or ROLLBACK if you need to undo changes
 
 ```sql
@@ -62,7 +63,7 @@ BEGIN TRAN
 COMMIT TRAN;
 ```
 
-2-Implicitly
+2. Implicitly
 MS SQL Server automatically commits the transaction at the end of each individual statement, in case you didn't specify this explicitly
 we can change this behavior by changing the session option [IMPLICIT_TRANSACTION] to ON, by doing so, we don't need to specify the beginning of tran, but we need to specify the end of the train either committing it or rollbacking it.
 
@@ -71,8 +72,8 @@ we can change this behavior by changing the session option [IMPLICIT_TRANSACTION
 Transactions have four props: ACID
 
 - Atomicity
--Consistency
--Isolation
+- Consistency
+- Isolation
 - Durability
 
 an example
@@ -104,15 +105,15 @@ we surrond transcation with try and catch
 
 ```sql
 BEGIN TRY
-BEGIN TRAN;
-UPDATE accounts SET current_balance = current_balance - 100 WHERE account_id = 1;
-INSERT INTO transactions VALUES (1, -100, GETDATE());
-UPDATE accounts SET current_balance = current_balance + 100 WHERE account_id = 5;
-INSERT INTO transactions VALUES (5, 100, GETDATE());
-COMMIT TRAN;
+   BEGIN TRAN;
+      UPDATE accounts SET current_balance = current_balance - 100 WHERE account_id = 1;
+      INSERT INTO transactions VALUES (1, -100, GETDATE());
+      UPDATE accounts SET current_balance = current_balance + 100 WHERE account_id = 5;
+      INSERT INTO transactions VALUES (5, 100, GETDATE());
+   COMMIT TRAN;
 END TRY
 BEGIN CATCH
-ROLLBACK TRAN;
+   ROLLBACK TRAN;
 END CATCH
 ```
 
@@ -125,9 +126,9 @@ UPDATE accounts SET current_balance = current_balance + 100 WHERE account_id = 5
 INSERT INTO transactions VALUES (500, 100, GETDATE()); -- ERROR!
 ```
 
-resulting in an inconsistent state
+resulting in an **inconsistent** state
 
-exercises
+### Exercises
 
 ```sql
 
@@ -188,7 +189,8 @@ begin tran;
 
 ### @TRANCOUNT and savepoints
 
-@@ TRANCOUNT returns the number of BEGIN TRAN statements that are active in your current connection
+savepoints:
+@@TRANCOUNT returns the number of BEGIN TRAN statements that are active in your current connection
 Returns:
 
 - 0 -> no open transactions
@@ -216,7 +218,9 @@ ROLLBACk TRAN;
 SELECT @@TRANCOUNT AS '@@TRANCOUNT value';
 ```
 
-# Controlling the concurrency: Transaction isolation levels
+## Controlling the concurrency: Transaction isolation levels
+
+What are isolation levels?
 
 ## Locks and Blocking
 
