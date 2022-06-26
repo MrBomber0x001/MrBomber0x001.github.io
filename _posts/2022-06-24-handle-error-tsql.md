@@ -8,19 +8,20 @@ share-img: /assets/img/path.jpg
 tags: [sql]
 ---
 
+
 ## Introduction
 
-<div style="width:100%;height:0;padding-bottom:56%;position:relative;"><iframe src="https://giphy.com/embed/nVTa8D8zJUc2A" width="100%" height="100%" style="position:absolute" frameBorder="0" class="giphy-embed" allowFullScreen></iframe></div><p><a href="https://giphy.com/gifs/nVTa8D8zJUc2A">via GIPHY</a></p>
+![giphy.gif](<https://cdn.hashnode.com/res/hashnode/image/upload/v1656254959441/Hz9dG9JiL.gif> align="left")
 
-As a Backend Software Engineer you will be working with database alot on your regular basis, so you should get comfortable reading SQL errors to properly fix them, so it's an essential skill for you as a developer and troubleshooter as well. <br>
+As a Backend Software Engineer, you will be working with databases a lot on a regular basis, so you should get comfortable reading SQL errors to properly fix them, so it's an essential skill for you as a developer and troubleshooter as well. <br>
 
-Errors in T-SQL are of many types, bases on the error you get, you can decide the optimal solution for it.
-So In this article I will show you how to **read**, **handle** and even **customize** your errors.
+Errors in T-SQL are of many types, based on the error you get, you can decide the optimal solution for it.
+So In this article, I will show you how to **read**, **handle** and even **customize** your errors.
 
 ## Table of Contents
 
 1. Starting with error handling.
-2. Raising, throwing and customizing your errors.
+2. Raising, throwing, and customizing your errors.
 3. Resources.
 
 ## Error Handling
@@ -49,7 +50,7 @@ Cannot insert duplicate key in object 'dbo.products'.
 The duplicate key value is (Trek Powerfly 5 - 2018).
 ```
 
-we can handle this kind of Error using `Try catch` block. <br>
+we can handle this kind of Error using the `Try catch` block. <br>
 The syntax of try-catch on SQL is nearly similar to the ones on programming languages,
 you begin with try and end with catch, you see it's that simple 😄. <br>
 
@@ -140,7 +141,7 @@ END CATCH
 
 #### Exercise
 
-You've a stock attribute on `products` table and this unreasable
+You have a stock attribute on `products` table and you can't have negative values on this attribute.
 
 ```sql
 -- Set up the TRY block
@@ -217,27 +218,27 @@ You can also create your own starting from `50001`
 * from `11 - 16`: errors that can be corrected by the user (constraint violation, etc.)
 * from `17 - 26`: other errors (software problems, fatal errors)
 
-you can see the whole list throught the docuemntation
+you can see the whole list through the docuemntation
 
-* the third value is the state: it give you more informatioj about the error
-1: if sql server display error
+* the third value is the state: it gives you more information about the error
+1: if SQL server display an error
 0-255: own errors -> to raise your own error
 
 * The fourth value is `Line`  -> give you the line number.
 
-Finally if the error happended within a stored procedure` or a `trigger`, you will receive extra data giving you the name of the stored procedure or the name of th trigger
+Finally, if the error happens within a stored procedure` or a `trigger`, you will receive extra data giving you the name of the stored procedure or the name of the trigger
 
 ### Uncatchable Errors
 
-the try cath we've learnt can't catch every kind of errors.
+the try cath we've learned can't catch every kind of error.
 
 * Severity lower than 11 (Uncatchable)
 * Severity 11 -> 19 (catchable)
 * Compilation errors: objects and columns that don't exist
 
-severity of 20 or higher that stopped the connection will not be caught but if it didn't cut the connection, it will be caught
+the severity of 20 or higher that stopped the connection will not be caught but if it didn't cut the connection, it will be caught
 
-compilation error: object and column that doesn't exit
+compilation error: object and column that doesn't exist
 
 **An example**
 
@@ -250,7 +251,7 @@ BEGIN CATCH
 end catch
 ```
 
-notice the outout?
+notice the output?
 
 ```
 Msg 207, Level 16, State 1, Line 2
@@ -260,7 +261,7 @@ Invalid column name 'non_existent_column'.
 It doesn't give you the actual error which is `you are in the CATCH Block` As this is a compilation error, the `CATCH` block can
 t handle the error
 
-### Giving information about error
+### Giving information about the error
 
 ```
 Msg 2627, Level 14, State 1, Line 1
@@ -270,7 +271,7 @@ The duplicate key value is (Trek Powerfly 5 - 2018).
 this is the original error
 ```
 
-and this is the error returned from catch block
+and this is the error returned from the catch block
 
 ```sql
 BEGIN TRY
@@ -287,15 +288,15 @@ END CATCH
 |-----------------------------------------------|
 | An error occurred! You are in the CATCH block |
 
-sometimes the default error the query throws is very useful, and by overriding it using CATCH with error statement we lose the default, however can still retrieve it using
+sometimes the default error the query throws is very useful, and by overriding it using CATCH with an error statement we lose the default, however, can still retrieve it using
 
 ### Error functions
 
 `ERROR_NUMBER()` returns the number of the error.
 `ERROR_SEVERITY()` returns te error severity (11-19)
 `ERROR_STATE()`  returns the state of the error
-`ERROR_LINE()` retuens the number of the line error
-`ERROR_PROCEDURE()` returns the name of the sotred proc/trigger, Null if there is not stored pro/trig
+`ERROR_LINE()` returns the number of the line error
+`ERROR_PROCEDURE()` returns the name of the stored proc/trigger, Null if there is no stored pro/trig
 `Error_message()`
 
 **An Example**
@@ -336,7 +337,7 @@ ERROR_MESSAGE() AS Error_message;
 you will get `nulls`
 
 we can use it inside nested try and catch,
-But in this case you will get the last error occurred
+But in this case, you will get the last error that occurred
 
 ```sql
 BEGIN TRY
@@ -382,20 +383,20 @@ END CATCH
 
 ```
 
-## Raising, throwing, and customizing your errors
+## Raising, throwing and customizing your errors
 
-In this section we will learn
+In this section, we will learn
 
-* how to raise errors.
-* re-throw original errors.
-* create your own defined errors.
+* How to raise errors.
+* Re-throw original errors.
+* Create your own defined errors.
 
 ### Raise errors statements
 
-sql server provides two statement to raise errors
+SQL Server provides two statements to raise errors
 
 * `RAISEERROR`
-* `THROW` (microsoft recommend using it on new application)
+* `THROW` (Microsoft recommend using it on new application)
 
 **RAISERROR syntax**
 
@@ -404,9 +405,9 @@ RAISEERROR ( {msg_str | msg_id | @local_variable_message}, severity, state, [ ar
 [WITH option [,...n]]
 ```
 
-* the first parameter can be a message string, a message id, or a variable that contains the message string.
-* the second prarmer -> serverity
-* the thried -> state
+* the first parameter can be a message string, a message-id, or a variable that contains the message string.
+* the second Parameter -> severity
+* the third -> state
 
 you can optionally add arguments, like strings or numbers
 
@@ -421,10 +422,10 @@ if not exits( select * from staff where staff_id = 15)
 
 ```
 Msg. 50000, Level 16, State 1, Line 3
-No staff member with such id
+No staff member with such an id
 ```
 
-If we don't specicy an error number, the error number will always be `50000`
+If we don't specify an error number, the error number will always be `50000`
 
 Let's change the message text with `placeholders`
 
@@ -437,7 +438,7 @@ Msg. 50000, Level 16, State 1, Line 3
 No staff member with id 15
 ```
 
-It's recommended to look at microsoft documentatin
+It's recommended to look at Microsoft documentation for more information
 
 #### RAISERROR with error number
 
@@ -450,7 +451,7 @@ Msg. 60000, Level 16, State 1, Line 1
 This is a test message
 ```
 
-This erorr number comes from `sys.messages`
+This error number comes from `sys.messages`
 
 **RIASERROR - Example with Try .. Catch**
 
@@ -471,7 +472,7 @@ Msg. 50000, Level 9, State 1
 
 As you might've guessed, errors below `11` are not catchable.
 
-if we changed the severity level from 9 to 11, the error will caught by catch
+if we changed the severity level from 9 to 11, the error will be caught by the catch
 
 | message |
 | --- |
@@ -495,9 +496,9 @@ END CATCH
 
 ### Throw statment
 
-> Recommended by Microsoft over RAISERROR statemnt
+> Recommended by Microsoft over RAISERROR statement
 
-Genral syntax
+**General syntax**
 
 ```sql
 THROW [error_number, message, state][;]
@@ -528,7 +529,7 @@ Divide by zero error encountered.
 
 and `SELECT` statement inside catch has not been executed;
 
-be careful when writing THROW at the end, you should put semi-colon before the line
+be careful when writing THROW at the end, you should put a semi-colon before the line
 
 ```sql
 BEGIN TRY
@@ -550,7 +551,7 @@ SQL Server thinks that the word THROW is an alias for the select statement
 This syntax can be included within a CATCH block or outside of it.
 
 ```sql
-THROW 52000, 'This is an example', 1;
+THROW 52000, 'This is an example, 1;
 ```
 
 **An example**
@@ -565,7 +566,7 @@ BEGIN CATCH
 END CATCH
 ```
 
-But only statement with no parameter should be put on `catch` block
+But only statements with no parameter should be put on the `catch` block
 
 | message |
 | --- |
@@ -605,8 +606,41 @@ END CATCH
 
 ⚠️**Warning**: <br>
 
-throw statement doesn't allow the inclusion of parameters placeholders such as %d or %s but we have a hack around this
+throw statement doesn't allow the inclusion of parameters placeholders such as %d or %s but we have a hack around this by
 
-notice that the throw statement doens't allow the specification of the serverity, sql server always sets it to 16
+1. Variable by concatenating strings
+2. `FORMATEMESSAGE()` function
+
+#### Using a variable and the CONCAT function
+
+```sql
+DECLARE @staff AS INT = 500;
+DECLARE @my_message NVARCHAR(500) = CONCAT('There is no staff member for id', @staff_id, '. Try with another one)
+
+IF NOT EXISTS (SELECT * FROM staff WHERE staff_id = @staff_id)
+    THROW 50000, @my_message, 1;
+```
+
+```
+Msg. 50000, Level 16, State 1, Line 5
+There is no staff member for id 500. Try With another one.
+```
+
+#### Using FORMATEMESSAGE function
+
+```sql
+FORMATEMESSAGE( { ' msg_string' | msg_number }, [param_value [,...n]])
+```
+
+we can include wild cards
+
+```sql
+DECLARE @staff AS INT = 500;
+DECLARE @my_message NVARCHAR(500) = FORMATEMESSAGE('There is no staff member for id %d. %s ', @staff_id, 'Try with another one');
+```
+
+notice that the throw statement doesn't allow the specification of the severity, SQL server always sets it to 16
 
 ## Resources
+
+- <a href="https://campus.datacamp.com/courses/transactions-and-error-handling-in-sql-server/raising-throwing-and-customizing-your-errors">Datacamp - Transaction and Error Handling</a>
