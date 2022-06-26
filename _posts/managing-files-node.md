@@ -8,17 +8,13 @@ share-img: /assets/img/path.jpg
 tags: [nodejs]
 ---
 
-###### Contents
+## Table of Contents
 
 - Reading from and to Writing files
-
+  - Partial read/write
+  - Full read/write
+  - Different methods used (Sync, Async)
 - handling streams
-
-On this write-up we will be taking about
-
-- entire file [reading, writing]
-
-- partial read or write
 
 Reasons to Read to a file
 

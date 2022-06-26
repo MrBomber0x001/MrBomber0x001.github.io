@@ -500,99 +500,113 @@ END CATCH
 Genral syntax
 
 ```sql
-
+THROW [error_number, message, state][;]
 ```
 
+📓**note**:<br>
 unlike the RAISERROR statement, the THROW statement allows re-throwing an original error caught by a CATCH block
-an example
+
+#### Throw - Without parameters
 
 ```sql
-
+BEGIN TRY
+    SELECT price/0 from orders;
+END TRY
+BEGIN CATCH
+    THROW;
+    SELECT 'This line is executed!' as message;
+END CATCH
 ```
 
-output
+The original error caused from the try block is dividing by 0, so the output mesasge is the thrown original error
 
 ```
-
-
+(0 rows affected)
+Msg. 8134, Level 16, State 1, Line 2
+Divide by zero error encountered.
 ```
 
-Notice that the error message is the original error message not the one we have specified in select statement in catch block
+and `SELECT` statement inside catch has not been executed;
+
 be careful when writing THROW at the end, you should put semi-colon before the line
 
 ```sql
-
+BEGIN TRY
+    SELECT price / 0 from orders
+END TRY
+BEGIN CATCH 
+    SELECT 'This line is executed!'
+    THROW;
+END CATCH
 ```
 
+| THROW |
+| --- |
+| This line is executed! |
 SQL Server thinks that the word THROW is an alias for the select statement
 
-THROW - with parameters
+#### Throw - with parameters
 
-```sql
-
-```
-
-this syntax can be included within a CATCH block or outside of it.
+This syntax can be included within a CATCH block or outside of it.
 
 ```sql
 THROW 52000, 'This is an example', 1;
 ```
 
+**An example**
+
+```sql
+BEGIN TRY
+    IF NOT EXISTS (SELECT * FROM staff FROM staff_id = 15)
+        THROW 51000, 'This is an example', 1;
+END TRY
+BEGIN CATCH
+    SELECT ERROR_MESSAGE() as message;
+END CATCH
+```
+
+But only statement with no parameter should be put on `catch` block
+
+| message |
+| --- |
+| This is an example |
+
+**Another example**
+
+```sql
+CREATE PROCEDURE insert_product
+    @product_name VARCHAR(5),
+    @stock INT,
+    @price DECIMAL
+AS
+BEGIN TRY
+    INSERT INTO products (product_name, stock, price)
+        VALUES (@product_name, @stock, @price)
+END TRY
+BEGIN CATCH
+    INSERT INTO errors VALUES ('Error inserting a product');
+        THROW;
+END CATCH
+```
+
+```sql
+BEGIN TRY
+    EXEC insert_product
+    @product_name = 'Trek Conduit+'
+    @stock = 3,
+    @price = 499.99
+END TRY
+BEGIN CATCH
+    SELECT ERROR_MESSAGE();
+END CATCH
+```
+
+### customizing error messages in THROW statements
+
+⚠️**Warning**: <br>
+
 throw statement doesn't allow the inclusion of parameters placeholders such as %d or %s but we have a hack around this
 
 notice that the throw statement doens't allow the specification of the serverity, sql server always sets it to 16
 
-THROW - with parameters
-
-```sql
-
-
-```
-
-some exercises
-1-You want to prepare a stored procedure to insert new products in the database. In that stored procedure, you want to insert the possible errors in a table called errors, and after that, re-throw the original error.
-
-```sql
-CREATE PROCEDURE insert_product
-  @product_name VARCHAR(50),
-  @stock INT,
-  @price DECIMAL
-
-AS
-
-BEGIN TRY
- INSERT INTO products (product_name, stock, price)
-  VALUES (@product_name, @stock, @price);
-END TRY
--- Set up the CATCH block
-begin catch
- -- Insert the error and end the statement with a semicolon
-    insert into errors VALUES ('Error inserting a product');
-    -- Re-throw the error
- throw; 
-end catch
-```
-
-2- Executing a stored procedure that throws an error
-
-```sql
-BEGIN TRY
- -- Execute the stored procedure
- EXEC insert_product
-     -- Set the values for the parameters
-     @product_name = 'Trek Conduit+',
-        @stock = 3,
-        @price = 499.99;
-END TRY
--- Set up the CATCH block
-Begin catch 
- -- Select the error message
- SELECT error_message();
-end catch
-```
-
 ## Resources
-
-1. Datacamp
-
-2.

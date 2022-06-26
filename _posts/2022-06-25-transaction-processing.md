@@ -1,18 +1,21 @@
 ---
 layout: post
-title: DB Transaction Processing and Management
+title: Transcations & Concurrency control (Theory and Practice) in T-SQL
 subtitle: 
 cover-img: /assets/img/cover.jfif
 thumbnail-img: /assets/img/t-sql.jpg
 share-img: /assets/img/path.jpg
 tags: [sql, database]
 ---
-
 ## Table of Content
 
 1. Humble Intro to Transcations.
 2. Transactions in SQL server
+   2.1 Transcation Isolation levels
+   2.2 Viewing Transactions
 3. Concurrency in Transactions
+   3.1 Concurrency vs parallism vs asyncrounsly
+   3.2 Optimstic vs pesimstic concurrency Controlling
 
 ## Transactions in SQL Server
 
@@ -25,7 +28,7 @@ the procedure as came to your mind is
 2. Add those 100 to B
 so the operation here needs to be done as all statement , or not
 
-Genreal Statement
+**Genreal Statement**
 
 ```sql
 BEGIN {TRAN | TRANSACTION }
@@ -35,7 +38,7 @@ BEGIN {TRAN | TRANSACTION }
 [;]
 ```
 
-you can optionally add a transcation name and WITH MARK
+Uou can optionally add a transcation name and WITH MARK
 
 ```sql
  COMMIT [ {TRAN | TRANSACTION } [transcation_name | transc_name_variable ]]
@@ -44,7 +47,7 @@ you can optionally add a transcation name and WITH MARK
 
 once the commit is executed, the effect of transaction can't be reversed
 
-`ROLLBACK` reverts the transaction to the beginning of it or a savepoint inside the transaction
+`ROLLBACK` reverts the transaction to the beginning of it or a `savepoint` inside the transaction
 
 ```sql
 ROLLBACK {TRAN | TRANSACTION }
