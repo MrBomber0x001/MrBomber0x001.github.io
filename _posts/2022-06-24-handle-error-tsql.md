@@ -11,7 +11,7 @@ tags: [sql]
 
 ## Introduction
 
-![giphy.gif](<https://cdn.hashnode.com/res/hashnode/image/upload/v1656254959441/Hz9dG9JiL.gif> align="left")
+![giphy.gif](<https://cdn.hashnode.com/res/hashnode/image/upload/v1656254959441/Hz9dG9JiL.gif>)
 
 As a Backend Software Engineer, you will be working with databases a lot on a regular basis, so you should get comfortable reading SQL errors to properly fix them, so it's an essential skill for you as a developer and troubleshooter as well. <br>
 
@@ -643,4 +643,4 @@ notice that the throw statement doesn't allow the specification of the severity,
 
 ## Resources
 
-- <a href="https://campus.datacamp.com/courses/transactions-and-error-handling-in-sql-server/raising-throwing-and-customizing-your-errors">Datacamp - Transaction and Error Handling</a>
+* <a href="https://campus.datacamp.com/courses/transactions-and-error-handling-in-sql-server/raising-throwing-and-customizing-your-errors">Datacamp - Transaction and Error Handling</a>
