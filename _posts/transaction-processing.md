@@ -16,6 +16,7 @@ tags: [sql, database]
 3. Concurrency in Transactions
    3.1 Concurrency vs parallism vs asyncrounsly
    3.2 Optimstic vs pesimstic concurrency Controlling
+   3.3 Locks and Latching
 
 ## Transactions in SQL Server
 

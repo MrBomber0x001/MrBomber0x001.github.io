@@ -17,6 +17,11 @@ tags: [sql, database]
 ## Temporal EDA, Variables & Date Manipulation
 
 EDA: Exploratory Data analysis
+
+- EDA is an iterative process where there is no set of questions applicable to all datasets
+
+-
+<put here the photo>
 In this section, we will study date manipulation using different Date functions such as datepart, datename and datediff
 
 ```sql
@@ -102,11 +107,11 @@ GROUP BY CONVERT(DATE, StartDate);
 
 ## Variable for datetime data
 
-# User-defined Functions
+## User-defined Functions
 
-# Stored Procedures
+## Stored Procedures
 
-# NYC Taxi Ride Case Study
+## NYC Taxi Ride Case Study
 
 Variables for datetime date:
 we can create single value variable or table variable

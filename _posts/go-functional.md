@@ -8,6 +8,15 @@ share-img: /assets/img/path.jpg
 tags: [go, functional]
 ---
 
+
+
+- Advantages of functional programming
+- Limitation of applying functional paradigm in Go
+- Using function extensively
+- Immutability, Currying and HOF
+- Popular design patterns and their use-cases in Go
+- unit tests (error and assertion base)
+
 ## Table of Contents
 
 0. Humble introduction to Functional programming paradigm.

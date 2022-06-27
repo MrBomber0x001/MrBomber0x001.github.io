@@ -184,6 +184,9 @@ License: <https://www.youracclaim.com/earner/earned/badge/683c4334-5a5a-49d0-a50
 Jan 2020 +
 License: <https://www.youracclaim.com/earner/earned/badge/7af28728-587f-414b-9d4e-78e7b482053d[140538,role=external,window=_blank>]
 
+- Distributed Programming, messaging, stream processing and data pipelines (`RabbitMQ`, `Kafka`).
+- Experience with Searching solutions (`ElasticSearch`).
+
 |TOGAF® 9 Foundation +
 Nov 2019 +
 License: <https://www.youracclaim.com/badges/22a781dc-0fd1-4ff4-a993-e73ac26b0d1c[603233,role=external,role=external,window=_blank>]

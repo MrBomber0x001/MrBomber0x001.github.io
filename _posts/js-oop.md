@@ -4928,7 +4928,7 @@ let colt = {
   }
 
 ##############
-/*this*/
+/_this_/
 let o = {
     carId: 123,
     getId: function(){
@@ -4937,7 +4937,7 @@ let o = {
     }
 };
 console.log(o.getId());
-/*call and apply: they mainly used to change the value of 'this' based on the context*/
+/_call and apply: they mainly used to change the value of 'this' based on the context_/
 let o = {
     carId: 123,
     getId: function(){
@@ -4948,7 +4948,7 @@ let o = {
 let newCar = {carId: 554645654};
 console.log(o.getId.call(newCar)); //'this' now refers to newCar
 console.log(o.getId.apply(newCar, ['ID: '])); //the main deffierence from 'call' is it accepts array of arguments
-/*Bind: we call bind on a function and makes copy of that function and assign it with new context*/
+/_Bind: we call bind on a function and makes copy of that function and assign it with new context_/
 let o = {
     carId: 123,
     getId: function(){
@@ -5115,7 +5115,7 @@ constructor: Dog,
 //using isPrototypeof
 Dog.prototype.isPrototypeof(bubby); //true
 bubby instanceof Dog; //true => still works
-/*understand Prototype chain*/
+/_understand Prototype chain_/
 //All objects in JavaScript (with a few exceptions) have a prototype. Also, an object’s prototype itself is an object.
 function Bird(name){
   this.name = name;

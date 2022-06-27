@@ -8,21 +8,27 @@ share-img: /assets/img/path.jpg
 tags: [database]
 ---
 
-# backend-agnostic
+## Intro
 
 Backend Specific Courses and Books which are language agnostic
 
 ## Linux
 
-Books:
+**Books**:
+
+- [ ] How Linux works.
+
+**Courses**:
+
+- [ ] Ahmed Alarabawy on Youtube [Software Engineer @Google]
 
 ## Databases
 
-Books:
+**Books**:
 
 - [ ] Database System Concepts, Third Edition. [more academic]
 
-Courses:
+**Courses**:
 
 - [ ] <a href="https://www.youtube.com/playlist?list=PLSE8ODhjZXjZaHA6QcxDfJ0SIWBzQFKEG">CMU: Introduction to Database Systems, 2021</a>
 - [ ] <a href="https://www.youtube.com/playlist?list=PLSE8ODhjZXjbisIGOepfnlbfxeH7TW-8O">CMU: Advanced Database Systems, 2016</a>
@@ -58,28 +64,26 @@ Courses:
 
 ## Microservices
 
-Books:
+**Books**:
 
 - [ ] Building Microservices: Designing Fine-Grained Systems, by Sam Newman (the best) [language agnostic]
 - [ ] <a href="https://www.youtube.com/c/NicJackson">NicJackson, Focused on Microservices</a>
-Courses:
+
+**Courses**:
+
 - [ ] <a href="https://www.educative.io/module/introduction-to-microservices">An Introduction to Microservice Principles and Concepts - [Educative]</a>
 - [ ] <a href="https://www.educative.io/courses/microservice-architecture-practical-implementation">Practical Implementation - [Educative]</a>
 
 ## Operating Systems
 
-Books:
+**Books**:
 
 - [ ] Operating Systems - Three Easy Pieces
 - [ ] Operating Systems - Internals and Design Implementations, William Stallings
 
-Courses:
-
-Ideas:
-
 ## Javascript
 
-Books:
+**Books**:
 
 - [ ] Beginner
   - [ ] You Don't Know JS, Kyle
@@ -89,31 +93,15 @@ Books:
   - [ ] Secrets of the JavaScript Ninja by John Resig, Bear Bibeault, Josip Maras
   - [ ] Javascript Design Patterns
 
-Courses:
+**Courses**:
 
 - [ ] Frontend Masters Series
 
 ## Compilers
 
-Books:
-
-Courses:
-
-Ideas:
-
 ## Software Architecture
 
-Books:
-
-Courses:
-
 ## OOP and Design Patterns
-
-Books:
-
-Courses:
-
-Ideas:
 
 ## Cryptography and web security
 
@@ -122,4 +110,3 @@ and for you as a backend engineer it's mandatory to grash those concepts very we
 Books:
 
 Other Useful resources:
--> Get it from IEEE MSB
