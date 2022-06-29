@@ -90,14 +90,14 @@ function buildFunctions(){
 
 </details>
 
-----------------------------------------------------------------------------
-
 ## Closure
 
   /**
 
 * Closures: a function that make use of variables defined in outer function that have previously returned
    */
+
+```js
   function outer(){
  let data = 'closures are ';
  return function inner(){
@@ -143,9 +143,11 @@ let course1 = classroom();
 course1.getInstructor();
 course1.addInstructor('yousefmeska');
 course1.getInstructor();
+```
 
-#################
 /*Closure*/
+
+```js
 let app = (function(){
     let carId= 123;
     let getId= function(){
@@ -156,3 +158,4 @@ let app = (function(){
     };
 })();
 console.log(app.getId);
+```

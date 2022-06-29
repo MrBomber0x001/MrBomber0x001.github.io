@@ -29,9 +29,8 @@ Backend Software Engineer (Node, Go) who loves building and maintaining web appl
 - Understanding of OOP & Functional programming.
 - Understanding Test Driven Development and Unit, Integration, E2E Testing.
 - Agile Methodologies - Scrum, Kanban.
-- Knowledge in Linux Configuration & shell scripting.
-- Background in Web Services (REST, GraphQl)
-- Understand parallelism and concurrency and related patterns (e.g. CSP) and its implementations in golang
+- Knowledge in (Linux & Windows) Configuration & shell scripting (`bash`, `powershell`).
+- Understand parallelism and concurrency and related patterns (e.g. CSP, actor-based) and its implementations in golang
 - Knowledge Linux programming (syscalls, filesystems, namespaces and others).
 - Understanding of the different storage types (object, block, file) and its use cases.
 - Understanding Hypervisors and containerization (the theory and practices).
@@ -41,7 +40,6 @@ Backend Software Engineer (Node, Go) who loves building and maintaining web appl
 - Understanding of OSI model and related protocols (`HTTP/HTTPs`,`TCP`, `UDP`, `DNS`, `ARP`, `FTP`, `SSH`, `TLS`), and good knowledge about networking tools like iptables, wireshark, tcpdump, and more.
 - Knowlege and Practice of (`WebRTC`, `WebSockets`, `RPC`, `gRPC`)
 - Understanding of `OIDC` and `OAuth 2.0` protocols.
-- Understanding of digital cryptography and cryptography essential concepts.
 
 ##### Projects
 
