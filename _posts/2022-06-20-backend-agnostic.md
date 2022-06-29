@@ -8,6 +8,10 @@ share-img: /assets/img/path.jpg
 tags: [database]
 ---
 
+## ⚠️Note
+
+It's under construction right now!
+
 ## Intro
 
 Backend Specific Courses and Books which are language agnostic
