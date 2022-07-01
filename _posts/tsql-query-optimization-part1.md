@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Query Optimization in T-SQL
+title: SQL server performance Tunning
 subtitle: 
 cover-img: /assets/img/cover.jfif
 thumbnail-img: /assets/img/t-sql.jpg

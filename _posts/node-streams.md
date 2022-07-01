@@ -1,7 +1,7 @@
 ---
 layout: post
-title: Streams on NodeJs
-subtitle: How to effiecently use Streams on NodeJs
+title: Deep dive into NodeJs Streams
+subtitle: How to effiecently leverage the power of NodeJs streams.
 cover-img: /assets/img/cover.jfif
 thumbnail-img: /assets/img/t-sql.jpg
 share-img: /assets/img/path.jpg
@@ -13,7 +13,7 @@ TODO: implement the video processing server which accept uploading and streaming
 
 ## Table of contents
 
-1. [Introduction](#introduction)
+1. [Introduction](#intro_to_streams)
 2. [Some paragraph](#introduction)
     1. [Sub paragraph](#subparagraph1)
     2. [Sub paragraph](#subparagraph2)
@@ -23,15 +23,16 @@ TODO: implement the video processing server which accept uploading and streaming
 
 The first paragraph text
 
-### Sub paragraph <a name="subparagraph1"></a>
-
-This is a sub paragraph, formatted in heading 3 style
-
 ## Another paragraph <a name="paragraph2"></a>
 
 The second paragraph text
 
-## Stream base classes
+## Wat?
+
+Streams is an abstract interface for creating data flows betweeen objects, and can be composed like LEGO-like modularity
+Streams are not just for working with big data!, one of it's most important features is `composability`, we can compose streams together just like composing linux command line together 'piping'
+
+## Stream base classes <a href="intro_to_streams"></a>
 
 `Readable`, `Writable`, `Duplex`, `Transform`, `PassThrough`
 ![](file://C:\Users\ncm\AppData\Roaming\marktext\images\2022-02-12-18-27-35-image.png)
@@ -42,9 +43,6 @@ so before going any further, you should have good amound of understanding, Prere
 *Events*
 *Buffers*
 *Asyncrounsity*
-
-Streams is an abstract interface for creating data flows betweeen objects, and can be composed like LEGO-like modularity
-Streams are not just for working with big data!, one of it's most important features is `composability`, we can compose streams together just like composing linux command line together 'piping'
 Example of Stream implementations are very common:
 **Who uses Streams?**
 

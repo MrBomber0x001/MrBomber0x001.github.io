@@ -245,3 +245,7 @@ Isolation level
 deadlocks
 
 Locking & Unlocking:  operation (a mechanism) to allow or prevent reading or writing on the data item
+
+## Resources
+
+<https://architecturenotes.co/things-you-should-know-about-databases/>
