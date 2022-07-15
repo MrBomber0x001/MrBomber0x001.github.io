@@ -557,3 +557,8 @@ stream.pipe(writer)
 
 as with `.pipe` it will not load all of the content into memory and also will not throw a memory exception error
 it will take care of the `back pressure` problem and `highWaterMark`
+
+## Resources
+
+- Udacity Advanced full stack web nanodegree.
+- Managin files on nodejs, plurasight
