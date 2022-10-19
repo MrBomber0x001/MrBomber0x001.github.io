@@ -21,8 +21,6 @@ tags: [sql, database]
 
 ## Transactions in SQL Server
 
-<put here the table of bank transcations database/>
-
 **Transaction**: _atomic_ unit of work that might include multiple activities that **query** and **modify** data, A one or more statements, all or none of the statment are executed.
 
 Imagine we have a bank account database, we need to transfer $100 from account A to  account B
