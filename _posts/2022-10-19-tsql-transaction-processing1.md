@@ -3,8 +3,8 @@ layout: post
 title: Transcations & Concurrency control - Theory and Practice!
 subtitle: Learn more about the nature of transactions and how to controll them!
 cover-img: /assets/img/cover.jfif
-thumbnail-img: /assets/img/t-sql.jpg
-share-img: /assets/img/path.jpg
+thumbnail-img: /assets/img/tr.png
+share-img: /assets/img/tr.png
 tags: [sql, database]
 ---
 # Introduction
