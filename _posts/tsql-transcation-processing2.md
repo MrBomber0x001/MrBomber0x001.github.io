@@ -446,7 +446,7 @@ Locking & Unlocking:  operation (a mechanism) to allow or prevent reading or wri
 
 - <https://architecturenotes.co/things-you-should-know-about-databases>
 - T-SQL Fundmentals [Books :book:]
-- Microsoft Documentation
+- Microsoft T-SQL Documentation
 - Datacamp Transcations and Error handling interactive course
 
 ### Notes for me

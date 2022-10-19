@@ -7,22 +7,32 @@ thumbnail-img: /assets/img/t-sql.jpg
 share-img: /assets/img/path.jpg
 tags: [sql, database]
 ---
+# Introduction
+
+Transaction processing is not a new concept, when I was first introduced to it, I didn't get it back then,  because of the lack of practical examples and poorly long articles.
+
+Recently I've taken a course on Datacamp which focuses heavily on that topic only,  using hands-on exercises and real-world scenarios.
+
+So I decided to make a guide for myself and for others who are curious about this huge topic.
+
+I hope you find this topic interesting and learn more about it, check the resources section for more information to dig in.
+
 ## Table of Content
 
-1. Humble Intro to Transcations.
-   - 1.1 Transcation Nature
-   - 1.2 Transction properties
+1. Humble Intro to Transactions.
+   - 1.1 Transaction Nature
+   - 1.2 Transaction properties
 2. Controlling Transactions
    - 2.1 Rolling back
    - 2.2 Savepoints
    - 2.3 Tracing Nested Transactions with @@TRANCOUNT
-3. Handling Erros in Transactions
+3. Handling Errors in Transactions
    - 3.1 spotting errors
    - 3.2 control the flow of transaction
 
 ## Transactions in SQL Server
 
-**Transaction**: are _atomic_ unit of work that might include multiple activities that **query** and **modify** data, A one or more statements, all or none of the statment are executed.
+**Transaction**: are _atomic_ unit of work that might include multiple activities that **query** and **modify** data, A one or more statements, all or none of the statements are executed.
 
 Imagine we have a bank account database, we need to transfer $100 from account A to  account B
 the procedure as came to your mind is
@@ -30,9 +40,9 @@ the procedure as came to your mind is
 1. Subtract 100 from A
 2. Add those 100 to B
 
-so the operation here needs to be done as all statement , or not
+so the operation here needs to be done as all statements, or not
 
-**Genreal Statement**
+**General Statement**
 
 ```sql
 BEGIN {TRAN | TRANSACTION }
@@ -42,14 +52,14 @@ BEGIN {TRAN | TRANSACTION }
 [;]
 ```
 
-We can optionally add a transcation name and WITH MARK, covering them is out of the scope right now!
+We can optionally add a transaction name and WITH MARK, covering them is out of the scope right now!
 
 ```sql
  COMMIT [ {TRAN | TRANSACTION } [transcation_name | transc_name_variable ]]
 [ WITH (DELAYED_DURABILITY = {OFF | ON } )][;]
 ```
 
-> Once the commit is executed, the effect of transaction can't be reversed!
+> Once the commit is executed, the effect of the transaction can't be reversed!
 
 `ROLLBACK` reverts the transaction to the beginning of it or a `savepoint` inside the transaction
 
@@ -74,11 +84,11 @@ COMMIT TRAN;
 **Implicitly** <br>
 MS SQL Server automatically commits the transaction at the end of each individual statement, in case you didn't specify this explicitly.
 
-we can change this behavior by changing the session option [IMPLICIT_TRANSACTION] to ON, by doing so, we don't need to specify the beginning of tran, but we need to specify the end of the tranasction either by committing it or rollbacking it.
+we can change this behavior by changing the session option [IMPLICIT_TRANSACTION] to ON, by doing so, we don't need to specify the beginning of transaction, but we need to specify the end of the transaction either by committing it or rollbacking it.
 
 ### Transaction properties
 
-Transactions have four props: commonly knows as ACID
+Transactions have four props: commonly known as ACID
 
 - Atomicity
 - Consistency
@@ -87,14 +97,14 @@ Transactions have four props: commonly knows as ACID
 
 #### ACID
 
-In fact knowing ACID properties is crucial to get profound understanding of Transctions and their effects on the database state!
+In fact, knowing ACID properties is crucial to get a profound understanding of Transactions and their effects on the database state!
 
-The safety guarantees provided by transactions are often described by the wellknown
+The safety guarantees provided by transactions are often described by the well-known
 acronym ACID, which stands for Atomicity, Consistency, Isolation, and Durability.
 It was coined in 1983 by Theo Härder and Andreas Reuter in an effort to
 establish precise terminology for fault-tolerance mechanisms in databases.
 
-##### Atomicity
+##### **Atomicity**
 
 ACID atomicity describes what happens if a client wants to make several
 writes, but a fault occurs after some of the writes have been processed—for example,
@@ -102,7 +112,7 @@ a process crashes, a network connection is interrupted, a disk becomes full, or 
 integrity constraint is violated.
 
 If the writes are grouped together into an atomic
-transaction, and the transaction cannot be completed (committed) due to a fault, then
+transaction and the transaction cannot be completed (committed) due to a fault, then
 the transaction is aborted and the database must discard or undo any writes it has
 made so far in that transaction.
 
@@ -120,7 +130,7 @@ Perhaps abortability would have
 been a better term than atomicity, but we will stick with atomicity since that’s the
 usual word.
 
-##### Consistency
+##### **Consistency**
 
 (invariants) that must always be true—for example, in an accounting system, credits
 and debits across all accounts must always be balanced. If a transaction starts with a
@@ -140,19 +150,19 @@ Atomicity, isolation, and durability are properties of the database, whereas con
 on the database’s atomicity and isolation properties in order to achieve consistency,
 but it’s not up to the database alone. Thus, the letter C doesn’t really belong in ACID
 
-##### Isolation
+##### **Isolation**
 
 Isolation in the sense of ACID means that concurrently executing transactions are
 isolated from each other: they cannot step on each other’s toes. The classic database
 textbooks formalize isolation as serializability, which means that each transaction can
 pretend that it is the only transaction running on the entire database. The database
-ensures that when the transactions have committed, the result is the same as if they
+ensures that when the transactions have been committed, the result is the same as if they
 had run serially (one after another), even though in reality they may have run concurrently
 
-##### Durability
+##### **Durability**
 
 The purpose of a database system is to provide a safe place where data can be stored
-without fear of losing it. Durability is the promise that once a transaction has committed
+without fear of losing it. Durability is the promise that once a transaction has been committed
 successfully, any data it has written will not be forgotten, even if there is a
 hardware fault or the database crashes.
 
@@ -167,7 +177,7 @@ replications are complete before reporting a transaction as successfully committ
 
 ### Putting it all together
 
-Now let's see an example of real-world transcation scenario
+Now let's see an example of a real-world transaction scenario
 
 ```sql
 BEGIN TRAN;
@@ -413,7 +423,7 @@ COMMIT TRAN;
 
 ## Controlling Errors of Transcations (XACT_ABORT & XACT_STATE)
 
-`XACT_ABORT` specified where the currenct transction will be automatically rolled back when an error occrus
+`XACT_ABORT` specified where the current transction will be automatically rolled back when an error occrus
 
 It can be set to on or off.
 
@@ -423,7 +433,7 @@ SET XACT_ABORT { ON | OFF}
 
 If an error occurs under the default setting which is by default `OFF`, the transcation can automatically be rolled back or not, depending on the error, if the transcations is not rolled back, **it remains open**
 
-Setting it to ON, will ensure the transcation will be rolled bacek when an error occures and abort the transaction
+Setting it to ON will ensure the transaction will be rolled back when an error occurs and abort the transaction
 
 ```sql
 SET XACT_ABORT ON
@@ -439,19 +449,19 @@ BEGIN TRAN
 COMMIT TRAN
 ```
 
-The last statement generate an error of violating the uniqe key 'unique_email'
+The last statement generates an error of violating the unique key 'unique_email'
 
 ```
 Violation of UNIQUE KEY 'unique_email'
 ```
 
-If we checked the customers table we'll see the first statement has been executed despite an error found on the transaction
+If we checked the customer's table we'll see the first statement has been executed despite an error found on the transaction
 
 | customer_id | first_name | last_name | email | phone |
 | --- | ---- | --- | --- | --- |
 | 14 | yousef | meska | yousefmeska123.com | 1545 |
 
-Now If we turned XACT_ABORT to ON, the transaction will be rolled back an aborted
+Now If we turned XACT_ABORT to ON, the transaction will be rolled back and aborted
 
 | customer_id | first_name | last_name | email | phone |
 | --- | ---- | --- | --- | --- |
@@ -483,7 +493,7 @@ COMMIT TRAN
 SELECT * FROM Users WHERE first_name IN ('yousef', 'omar')
 
 
--- What's the output ? and why ?
+-- What's the output? and why?
 
 # Answer
 
@@ -491,7 +501,7 @@ SELECT * FROM Users WHERE first_name IN ('yousef', 'omar')
 However, using `RAISERROR()` will not affect `XACT_ABORT`.
 So the output will be an error which will be shown to the user and the transcation will take place.
 
-2. So microsoft recommend using `THROW` instead because it will affect XAACT_ABORT and the transaction will be rolledback in addition to the error message that will be shown to the user
+2. So Microsoft recommend using `THROW` instead because it will affect XAACT_ABORT and the transaction will be rolled back in addition to the error message that will be shown to the user
 ```
 
 ### XACT_STATE
@@ -500,7 +510,7 @@ So the output will be an error which will be shown to the user and the transcati
 XACT_STATE()
 ```
 
-It doesn't take any parameter.
+It doesn't take any parameters.
 It returns
 
 - `0` -> no open transaction
@@ -510,14 +520,14 @@ It returns
 When a transaction is **Doomed** that's means
 
 - You can't commit
-- You can't rollback ot a savepoint
+- You can't rollback to a savepoint
 - You can only rollback the full transaction
 - You can't make any changes but you can read data
 
 Let's see an examples
-In this example, the transcation will will commited if there's no error between TRY block, if there's an error, the catch will handle it by determing the state of the transcation
-And the state of the transaction will remains opem and commitable because we set `XACT_ABORT` to OFF
-if the transaction is commitable then the transcation will be commited
+In this example, the transaction will becommitted if there's no error between the TRY block, if there's an error, the catch will handle it by determining the state of the transaction
+And the state of the transaction will remain open and committable because we set `XACT_ABORT` to OFF
+if the transaction is committable then the transaction will be committed
 if not it will be rolled backs
 
 ```sql
@@ -538,14 +548,15 @@ END CATCH
 ```
 
 Only the first statement will be committed
+
 | customer_id | first_name | last_name | email |
 | --- | ---- | --- | --- |
 | 15 | x | y | x@gmail.com |
 
-Let's see what happens when we need to make the transaction uncommitable?
+Let's see what happens when we need to make the transaction uncommittable.
 
 ```sql
-SET XACT_ABORT ON -- the transaction will remains open but uncommitable
+SET XACT_ABORT ON -- the transaction will remain open but uncommittable
 BEGIN TRY
    BEGIN TRAN
       INSERT INTO customers VALUES ('x', 'y', 'x@gmail.com')
@@ -564,7 +575,7 @@ END CATCH
 | customer_id | first_name | last_name | email |
 | --- | ---- | --- | --- |
 
-The transaction has beed rolled back
+The transaction has been rolled back
 
 ### Exercises
 
@@ -601,3 +612,9 @@ BEGIN CATCH
     SELECT error_message() AS Error_message;
 END CATCH
 ```
+
+## Resources
+
+- [ ] Datacamp, Transaction and Error Handling in SQL server interactive course
+- [ ] Ch. 7 Transaction processing, Designing Data-Intensive Applications
+- [ ] Microsoft T-SQL Documentation
