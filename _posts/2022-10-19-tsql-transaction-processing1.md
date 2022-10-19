@@ -1,7 +1,7 @@
 ---
 layout: post
-title: Transcations & Concurrency control (Theory and Practice) in T-SQL - Part 1
-subtitle: 
+title: Transcations & Concurrency control - Theory and Practice!
+subtitle: Learn more about the nature of transactions and how to controll them!
 cover-img: /assets/img/cover.jfif
 thumbnail-img: /assets/img/t-sql.jpg
 share-img: /assets/img/path.jpg
@@ -10,24 +10,26 @@ tags: [sql, database]
 ## Table of Content
 
 1. Humble Intro to Transcations.
-   1.1 Transcation Nature
-   1.2 Transction properties
-
+   - 1.1 Transcation Nature
+   - 1.2 Transction properties
 2. Controlling Transactions
-   2.1 Rolling back
-   2.2 Savepoints
-   2.3 Tracing Nested Transactions with @@TRANCOUNT
+   - 2.1 Rolling back
+   - 2.2 Savepoints
+   - 2.3 Tracing Nested Transactions with @@TRANCOUNT
 3. Handling Erros in Transactions
+   - 3.1 spotting errors
+   - 3.2 control the flow of transaction
 
 ## Transactions in SQL Server
 
-**Transaction**: _atomic_ unit of work that might include multiple activities that **query** and **modify** data, A one or more statements, all or none of the statment are executed.
+**Transaction**: are _atomic_ unit of work that might include multiple activities that **query** and **modify** data, A one or more statements, all or none of the statment are executed.
 
 Imagine we have a bank account database, we need to transfer $100 from account A to  account B
 the procedure as came to your mind is
 
 1. Subtract 100 from A
 2. Add those 100 to B
+
 so the operation here needs to be done as all statement , or not
 
 **Genreal Statement**
@@ -40,14 +42,14 @@ BEGIN {TRAN | TRANSACTION }
 [;]
 ```
 
-We can optionally add a transcation name and WITH MARK
+We can optionally add a transcation name and WITH MARK, covering them is out of the scope right now!
 
 ```sql
  COMMIT [ {TRAN | TRANSACTION } [transcation_name | transc_name_variable ]]
 [ WITH (DELAYED_DURABILITY = {OFF | ON } )][;]
 ```
 
-once the commit is executed, the effect of transaction can't be reversed
+> Once the commit is executed, the effect of transaction can't be reversed!
 
 `ROLLBACK` reverts the transaction to the beginning of it or a `savepoint` inside the transaction
 
@@ -58,7 +60,8 @@ ROLLBACK {TRAN | TRANSACTION }
 
 we can define the boundaries (Beginning and end) of the transaction either:
 
-1. Explicitly
+**Explicitly** <br>
+
 The start of a transaction is defined by BEGIN and the end either to be
 COMMIT (in case you of success) or ROLLBACK if you need to undo changes
 
@@ -68,13 +71,14 @@ BEGIN TRAN
 COMMIT TRAN;
 ```
 
-2. Implicitly
-MS SQL Server automatically commits the transaction at the end of each individual statement, in case you didn't specify this explicitly
-we can change this behavior by changing the session option [IMPLICIT_TRANSACTION] to ON, by doing so, we don't need to specify the beginning of tran, but we need to specify the end of the train either committing it or rollbacking it.
+**Implicitly** <br>
+MS SQL Server automatically commits the transaction at the end of each individual statement, in case you didn't specify this explicitly.
+
+we can change this behavior by changing the session option [IMPLICIT_TRANSACTION] to ON, by doing so, we don't need to specify the beginning of tran, but we need to specify the end of the tranasction either by committing it or rollbacking it.
 
 ### Transaction properties
 
-Transactions have four props: ACID
+Transactions have four props: commonly knows as ACID
 
 - Atomicity
 - Consistency
@@ -83,7 +87,87 @@ Transactions have four props: ACID
 
 #### ACID
 
-an example
+In fact knowing ACID properties is crucial to get profound understanding of Transctions and their effects on the database state!
+
+The safety guarantees provided by transactions are often described by the wellknown
+acronym ACID, which stands for Atomicity, Consistency, Isolation, and Durability.
+It was coined in 1983 by Theo Härder and Andreas Reuter in an effort to
+establish precise terminology for fault-tolerance mechanisms in databases.
+
+##### Atomicity
+
+ACID atomicity describes what happens if a client wants to make several
+writes, but a fault occurs after some of the writes have been processed—for example,
+a process crashes, a network connection is interrupted, a disk becomes full, or some
+integrity constraint is violated.
+
+If the writes are grouped together into an atomic
+transaction, and the transaction cannot be completed (committed) due to a fault, then
+the transaction is aborted and the database must discard or undo any writes it has
+made so far in that transaction.
+
+Without atomicity, if an error occurs partway through making multiple changes, it’s
+difficult to know which changes have taken effect and which haven’t. The application
+could try again, but that risks making the same change twice, leading to duplicate or
+incorrect data.
+
+Atomicity simplifies this problem: if a transaction was aborted, the
+application can be sure that it didn’t change anything, so it can safely be retried.
+The ability to abort a transaction on error and have all writes from that transaction
+discarded is the defining feature of ACID atomicity.
+
+Perhaps abortability would have
+been a better term than atomicity, but we will stick with atomicity since that’s the
+usual word.
+
+##### Consistency
+
+(invariants) that must always be true—for example, in an accounting system, credits
+and debits across all accounts must always be balanced. If a transaction starts with a
+database that is valid according to these invariants, and any writes during the transaction
+preserve the validity, then you can be sure that the invariants are always satisfied.
+
+However, this idea of consistency depends on the application’s notion of invariants,
+and it’s the application’s responsibility to define its transactions correctly so that they
+preserve consistency. This is not something that the database can guarantee: if you
+write bad data that violates your invariants, the database can’t stop you. (Some specific
+kinds of invariants can be checked by the database, for example using foreign
+key constraints or uniqueness constraints. However, in general, the application
+defines what data is valid or invalid—the database only stores it.)
+
+Atomicity, isolation, and durability are properties of the database, whereas consistency
+(in the ACID sense) is a property of the application. The application may rely
+on the database’s atomicity and isolation properties in order to achieve consistency,
+but it’s not up to the database alone. Thus, the letter C doesn’t really belong in ACID
+
+##### Isolation
+
+Isolation in the sense of ACID means that concurrently executing transactions are
+isolated from each other: they cannot step on each other’s toes. The classic database
+textbooks formalize isolation as serializability, which means that each transaction can
+pretend that it is the only transaction running on the entire database. The database
+ensures that when the transactions have committed, the result is the same as if they
+had run serially (one after another), even though in reality they may have run concurrently
+
+##### Durability
+
+The purpose of a database system is to provide a safe place where data can be stored
+without fear of losing it. Durability is the promise that once a transaction has committed
+successfully, any data it has written will not be forgotten, even if there is a
+hardware fault or the database crashes.
+
+In a single-node database, durability typically means that the data has been written to
+nonvolatile storage such as a hard drive or SSD. It usually also involves a write-ahead
+log or similar, which allows recovery in the event that the data structures on disk are corrupted.
+
+In a replicated database, durability
+may mean that the data has been successfully copied to some number of nodes. In
+order to provide a durability guarantee, a database must wait until these writes or
+replications are complete before reporting a transaction as successfully committed.
+
+### Putting it all together
+
+Now let's see an example of real-world transcation scenario
 
 ```sql
 BEGIN TRAN;
@@ -122,7 +206,7 @@ BEGIN CATCH
 END CATCH
 ```
 
-a fourth example of implicit transaction, which will cause only a three statement to be executed correctly.
+a fourth example of implicit transaction, which will cause only a three statements to be executed correctly.
 
 ```sql
 UPDATE accounts SET current_balance = current_balance - 100 WHERE account_id = 1;
@@ -279,7 +363,7 @@ COMMIT TRAN
 only the last insert will took place
 
 :notebook: note:
-savepoints don't affect the value of @@TRANSCOUNT
+> savepoints don't affect the value of @@TRANSCOUNT
 
 ### Examples
 

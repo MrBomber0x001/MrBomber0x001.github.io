@@ -1,7 +1,7 @@
 ---
 layout: post
-title: Transcations & Concurrency control (Theory and Practice) in T-SQL - Part 2
-subtitle:
+title: Transcations & Concurrency control - Isolation levels in depth!
+subtitle: Humble introduction to isolation leves and how to use them!
 cover-img: /assets/img/cover.jfif
 thumbnail-img: /assets/img/t-sql.jpg
 share-img: /assets/img/path.jpg
