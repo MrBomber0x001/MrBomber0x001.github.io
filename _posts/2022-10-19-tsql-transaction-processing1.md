@@ -10,12 +10,18 @@ tags: [sql, database]
 ## Table of Content
 
 1. Humble Intro to Transcations.
+   1.1 Transcation Nature
+   1.2 Transction properties
+
 2. Controlling Transactions
+   2.1 Rolling back
+   2.2 Savepoints
+   2.3 Tracing Nested Transactions with @@TRANCOUNT
 3. Handling Erros in Transactions
 
 ## Transactions in SQL Server
 
-<put here the table of bank transcations database>
+<put here the table of bank transcations database/>
 
 **Transaction**: _atomic_ unit of work that might include multiple activities that **query** and **modify** data, A one or more statements, all or none of the statment are executed.
 
@@ -76,6 +82,8 @@ Transactions have four props: ACID
 - Consistency
 - Isolation
 - Durability
+
+#### ACID
 
 an example
 
@@ -190,7 +198,6 @@ begin tran;
 
 ### @TRANCOUNT and savepoints
 
-savepoints:
 @@TRANCOUNT returns the **number of BEGIN TRAN** statements that are active in your current connection
 Returns:
 
@@ -324,7 +331,7 @@ COMMIT TRAN;
 
 ## Controlling Errors of Transcations (XACT_ABORT & XACT_STATE)
 
-`XACT_ABORT` specified whthere the currenct transction will be automatically rolled back when an error occrus
+`XACT_ABORT` specified where the currenct transction will be automatically rolled back when an error occrus
 
 It can be set to on or off.
 

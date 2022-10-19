@@ -38,7 +38,8 @@ Backend Specific Courses and Books which are language agnostic
 - [ ] <a href="https://www.youtube.com/playlist?list=PLSE8ODhjZXjbisIGOepfnlbfxeH7TW-8O">CMU: Advanced Database Systems, 2016</a>
 Ideas:
 
-## Distributed Systems
+## Distributed Systems and System Design
+Before going into that section, you should've a technial knowledge of Operation Systems, Databases, Cryptography!
 
 <strong>Books</strong>
 

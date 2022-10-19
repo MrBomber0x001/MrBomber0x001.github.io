@@ -1,50 +1,65 @@
 ---
 layout: post
-title: How to Properly manage files using NodeJs
-subtitle:
+title: How to manage files using NodeJs
+subtitle: Learn different methodology of handling files.
 cover-img: /assets/img/cover.jfif
-thumbnail-img: /assets/img/t-sql.jpg
-share-img: /assets/img/path.jpg
+thumbnail-img: /assets/img/node.jpg
+share-img: /assets/img/node.jpg
 tags: [nodejs]
 ---
 
 ## Table of Contents
 
-- Reading from and to Writing files
+- Reading from and Writing to files
   - Partial read/write
   - Full read/write
   - Different methods used (Sync, Async)
-- handling streams
+  - Applying OS level permissions
+- watching for files
+- Handling streams:
+  - reading/writing
+  - handling back pressure
+- Moving and Deleting (linking and unlinking)
+- Renaming
 
-Reasons to Read to a file
+### Reasons to Read to a file
 
-- load data into database: convering delimited file and loading it onto a database
+You'll face tasks such as
 
-- display contents of log files
+- loading data into database: convering delimited file and loading it onto a database
 
-the optiona avaiable to manipulating files are alot ranging from async reading to sync
+- displaying contents of log files
 
-to partial from full
+the option avaiable to manipulating files are alot ranging from async reading to sync and from  partial to full
 
-### Reading Full File
+### Reading Entire File
 
 **Reading a file asyncrounsly**
 
-`readFile` open the file and load all the content into memory
+`readFile` **open** the file and **load** all the content into memory
 
-`readFile(path, encoding, callback(err, data))`:
+`readFile(path, encoding, callback(err, data))`.
+the first parameter of the callback is `error` because node follow the first-error callback philosophy
 
-if we didn't specify an encoding, the system will default to `Buffer`
+printing the error is very important to avoid losing the real cause of incoming errors
+if we didn't specify an encoding, the system will default to `Buffer` (buffer of bytes)
 
 ```js
 const {readFile} = require('fs');
 readFile("./data/example.cs", "utf-8", (err, data) => {
+  if(err) {
+    console.log(`There was a problem with the file ${err}`)
+    return;
+  }
     const vals = convertCsv(data);
     console.table(vals);
 })
 ```
 
 **Reading file sync**
+
+wrap the `readFileSync` with `try/catch` block to catch errors
+the `sync` methods do not use an `error` parameter instead they `throw` errors which cause system to crash
 
 ```js
 const {readFileSync} = require('fs');
@@ -58,7 +73,7 @@ try{
 
 **Reading file using promisify**
 
-In order to promisify to work, function passed to it must have the standard `callback` which follow the err first then data cb(err, data), if the order is different you'll get unexpected results
+In order to promisify to work, the actual function passed to it must have the standard `callback` which follow the err first then data cb(err, data), if the order is different you'll get unexpected results.
 
 ```js
 const { promisify } = require("util");
@@ -84,13 +99,16 @@ sometimes you need to view the last 10 requests of a log file containing 1000000
 
 reading the entire file will cause the file to be loaded into the memory which consumes more space and we don't need this type of situation
 
+so Reading it partially will help us decrease the load and if we want to make processes on the the data it would be possible
+
 `open`, `read`
 
 `open(path, (err, fd))`
 
-`read(fd, buffer, bufferOffset, HowMuchToRead, WhereToStartReadingOnTheFile)
+`read(fd, buffer, bufferOffset, HowMuchToRead, WhereToStartReadingOnTheFile)`
 
-bufferOffset is where to start inserting into the Buffer not the file!
+- `bufferOffset` is where to start inserting into the Buffer not the file!, so it's not the offset of the file
+- `buffer` is the place where you will start reading into
 
 if for example specifiy the bufferOffset to be 5, then the first byte read from the file will be stored on the 5 byte on the buffer
 
@@ -102,16 +120,18 @@ on linux: integer
 
 on windows: 32-bit handle
 
-fs library returns numeric descriptor for each opening file
+fs library returns numeric descriptor for each opening file, node uses this file descriptor to lookup the file from the operating systems
 
-most os have file limit
+most os have file limit, so it's important to close the file after doing the operation
 
 ```js
 const { convertCsv } = require("./csv.parse");
 const { open, read } = require("fs");
 
 open("./data/app.log", (err, fd) => {
-  const buffer = Buffer.alloc(200);
+  const buffer = Buffer.alloc(200); // allocate a buffer of 200 bytes long to be read at a time
+  // count parameter hold the number of actual bytes read
+  // buff is the data read
   read(fd, buffer, 0, buffer.length, 0, (err, count, buff) => {
     if (err) {
       console.log(err);
@@ -122,6 +142,8 @@ open("./data/app.log", (err, fd) => {
   });
 });
 ```
+
+There's one problem with this approach, we're only enable to read just `200 bytes` of the file, the solution is to read it chunk by chunk
 
 **Reading A chunk at a time**
 
@@ -137,7 +159,7 @@ stat("./data/app.log", (err, { size }) => (totalSize = size));
 
 open("./data/app.log", (err, fd) => {
   const buffer = Buffer.alloc(200);
-  for (let i = 0; i < totalSize / buffer.length; i++) {
+  for (let i = 0; i <= totalSize / buffer.length; i++) {
     read(
       fd,
       buffer,
@@ -152,82 +174,121 @@ open("./data/app.log", (err, fd) => {
 });
 ```
 
-There's mainly one problem here
+There's mainly one problem here:
+read is an asynchrounous method and we are executing it inside a for loop, so no gurantee of the order that function will return, so each time, it will return different result
 
-### The module system
+the solution is to read `sync`
+**Reading chunk at a time**
 
 ```js
-Module Wrapper Function
-(function (exports, require, module, __filename, __dirname){
-    // your code
-    console.log(__filename);
-    console.log(__dirname);
-    module.exports = something;
-})()
+const {openSync, readSync} = require("fs")
+const fd = openSync("./data/app.log")
+let count = 0;
+
+do {
+ const buffer = Buffer.alloc(200); // the buffer created inside the do statement
+  count = fs.readSync(fd, buffer, 0, buffer.length, null); // this is a signicant change
+  console.log(buffer.toString())
+} while (count > 0)
 ```
 
-require and exports, etc are local to every module (file)
-
-node added new timer called `setImmediate` which allows you to run async code within input-output block without circling back to the start of the event loop
-
-`console.log` on the browser is part of the development tools, on node it's part of node itself and print to the terminal
-
-`process` is not available on the browser APIs, because it relates only to the process of running file with node.js,
-
-the main task of the `process` is to give you information about the current process running and you can add additional events before the process ends
-
-or to give the `process` additional arguments entered when running node [provide input]
-
-console.log(module);
+making the position `null` will make node able to track where in the file and pick up there the next time trying to read.
 
 ```js
-$ node index.js var1 var2
-[
-    '/usr/local/bin/node',
-    '/Users/user/Desktop/app/index.js',
-    'var1',
-    'var2'
-]
-const logger = require('utils/logger')
+for (let i = 0; i < 50000; i++){
+  const fd = fs.openSync("./data/app.log")
+  console.log(fd) //where does it crash
+} // crash 
 ```
 
-> It is standard to name the const the same as the file or module name. Omitting the file extension is safe and common practice
-
-> but it is best practice to log to a file to save the data rather than just logging to the termina
-
 ```js
-console.log("Server ready"); // show to the terminal using stdout
-console.log("Server failed"); // show to the terminal using stderr
+for (let i = 0; i < 50000; i++){
+  const fd = fs.openSync("./data/app.log")
+  console.log(fd) 
+  fs.closeSync(fd)// there's no difference between close and closeSync
+}
 ```
 
-### process
+what about `readFile`, should we close it ?
+well it depends!
+If you passed a file path to `readFile`, then it closes it automatically, if you passed a `fd` then you must close it
 
-process is just regular module on node
+> Any time you've a file descriptor, you are responsible for closing the file
 
-`beforeExit` allows for asynchronous calls which can make the process continue whereas `exit` only happens once all synchronous and asynchronous code is complete.
+### Writing Entire file
 
-`process.stdout` and `console.log` is nearly identiacally the same, but one major difference is `process.stdout` does not enfore line breaks which is useful when creating progress bars
-
-`process.argv` allows you to pass in arguments to your application which can be a common occurrence when needing to parse data from files.
-
-`process.nextTick` allows you to run js between the different phases of the event loop
-
-| Interpreted Language | The language is read by a runtime and executed on the spot and errors are found on execution |
-| -------------------- | -------------------------------------------------------------------------------------------- |
+`writeFile(path, data, options, cb(err))` default the flag option to `w`
 
 ```js
-process.exitCode = 1;
-process.on("beforeExist", () => {
-  console.log("beforeExist event");
+const {writeFile}=require("fs")
+
+writeFile("./data/app.log", "welcome", (err) => {
+  err ? console.log(err) : console.log("file saved!")
 });
-process.on("exit", (code) => {
-  console.log(`exit event with code ${code}`);
-});
-console.log(process.env);
 
-process.stdout.write("Hello world");
-console.log(process.argv); // Array of argument passed
+writeFile("./data/app.log", "welcome", {flag: "a"}, (err) => {
+  err ? console.log(err) : console.log("file saved!)
+})
 ```
+
+`appendFile` default the flag to `a`
+
+```js
+const {appendFile} = require("fs")
+appendFile("./data/app.log", "welcome", (err) => {
+  err ? console.log(err) : console.log("file saved!")
+})
+```
+
+#### playing with options
+
+**main flags**:
+`r` read mode
+`w` write mode
+`a` append mode
+**Extended flags**:
+can be added to the main flags
+`x` (exclusive flag) which can be added to any flag, throw an error in case if the file already exist
+`+` open in multiple mode, in case of `w+` it will create the file if it doesn't exist, but `r+` will throw an error
+`s` synchrouns, it will not convert `open` to `openSync` for example, it has to deal this the file I/O
+**read option**
+There are 3 allowed combination of reading options
+`r`, `r+`, `rs`
+**writing option**
+`w`, `wx`, `w+`, `wx+`
+**append option**
+`a`, `ax`, `a+`, `ax+`, `as`, `as+`
+
+```js
+const {writeFile} = require("fs")
+writeFile("./data/app.log", "welcome", {flag: "wx"}, (err) => {
+  err ? console.log(err): console.log("file saved!")
+})
+```
+
+We can add os level permissions on the file while reading or writing
+| fs.constatns | Ocatal | Description |
+| -- | -- | -- |
+| S_IRUSR | 0o400 | Read by owner |
+| S_IWUSER | 0o200 | Write by Owner |
+
+```js
+const { constants, writeFile } = require("fs")
+
+writeFile("./text.js", "console.log(`welcome`)", {
+    mode: constants.S_IWUSR | constants.S_IRUSR // === 0o600
+}, (err) => {
+    err ? console.log(err) : console.log("file saved!")
+})
+
+{ mode: 0o600 } // create read and write permission for the user and no permission for any user or any users in a group
+// you can look for the Permission constants table  
+```
+
+We can specifiy also an encoding
+`{encoding: "base64"}`
+
+:small_airplane: before writing to the file, all of the content gets loaded into memory first
 
 `path` module allows for cross-platform usage
 
@@ -302,7 +363,7 @@ const readFile = async () => {
 
    2. read part of a file
 
-   3. file must be openeed first
+   3. file must be opened first
 
    4. requires a buffer to store read data
 
@@ -342,6 +403,162 @@ const readFile = async () => {
 
 `unlink(path), rmdir(path)`
 
-</details>
+### Real world Sceniro
 
---------------------------------------------------------------------
+Suppose we need to get an `index.js` file which contains all of our nested other files exported into that index.js file?
+like this
+
+```js
+module.exports.synchrounsRead = require('synchronous.read.js').read
+module.exports.synchrounsWrite = require('synchronous.write.js').write
+```
+
+Let's get started, our procedure:
+
+1. Open file `index.js`
+2. Get list of files on each directory
+3. Iterate over list of files
+4. add the `module.exports ...` statement to the name
+5. write to the file
+6. close the file
+
+`watch(dir or file, event listener(eventType, fileName))`
+
+```js
+const { closeSync, openSync, writeSync, readdirSync, watch } = require("fs")
+
+watch("./read", () => {
+  const indexFd = openSync("./index.js", 'w'); // open for writing
+
+  const files = readdirSync("./read");
+
+  files.map(f => {
+      const name = f.replace("js", "")
+      console.log(`Adding a file: ${f}`);
+      writeSync(indexFd, `module.exports.${camelCase(name)} = require('./ read/${name}).read;\n`)
+  })
+closeSync(indexFd)
+
+})
+    // `module.exports.fileName = require('file.name').read`
+
+// npm install camelCase
+```
+
+the process of watch will run again if you changed/add the name of the file or made any change to it's content
+
+### Reading and Writing Streams
+
+#### Reading
+
+With streams you don't read the stream with a function, instead, you create a stream and recieve data via an event
+
+with each read, the buffer contains `64kB`, because this is the default size of a stream, however, you do have the ability to change that default size which is called `highWaterMark`
+`highWaterMark` is the max number of bytes the stream will read at one time
+
+```js
+const { createReadStream } = require("fs");
+
+
+const stream = createReadStream("./text.js", { highWaterMark: 1, encoding: "utf-8" });
+
+let count = 0;
+stream.on("data", (data) => {
+    count++
+    console.log(count);
+    console.log(data);
+})
+
+```
+
+Sometimes the stream of data can move faster than your code can handle, how are going to handle those situations?
+`.resume()` and `.pause()` come into play
+
+```js
+const { createReadStream } = require("fs");
+
+const stream = createReadStream("./text.js", { highWaterMark: 1, encoding: "utf-8" });
+
+stream.on("data", (data) => {
+    stream.pause();
+    data = data.toUpperCase()
+    console.log(data);
+
+    setTimeout(() => { // we are simulating that our coding something before resuming
+        stream.resume();
+    }, 2000)
+})
+```
+
+#### Writing
+
+Writing is no different from reading
+
+```js
+const { createReadStream, createWriteStream } = require("fs");
+
+const stream = createReadStream("./text.js", { highWaterMark: 1, encoding: "utf-8" });
+const writer = createWriteStream("./anotherText.js")
+
+let iteration = 0;
+stream.on("data", (data) => {
+    stream.pause();
+    console.log(iteration++);
+
+    writer.write(data);
+    setTimeout(() => { // we are simulating that our coding something before resuming
+        stream.resume();
+    }, 1000)
+})
+```
+
+🤔 What happens when the output stream is slower than the input stream?
+As long as the data incoming from input stream can be handled from output stream, even if the output stream is faster than input streams, still no problem!
+
+`Back Pressure`:
+A backup of data, caused by streams being unable to process data before the next batch arrives
+
+The `stream.log` is about 1.8 GB
+
+```js
+const stream = createReadStream("./data/stream.log", {
+  encoding: "utf8"
+})
+
+const writer = createWriteStream("./data/output.log");
+
+let iteration = 0;
+
+stream.on("data", data => {
+  console.log(++iteration);
+
+  writeDate(data);
+})
+
+const writeDatea = data => {
+  setTimeout(() => {
+    writer.write(data);
+  }, 60000)
+}
+```
+
+This code however produces an error causing the whole process to stop writing, because the heap memory of js is loaded to full, and can't process more data.
+to overcome this issue, we need just one line
+
+```js
+const stream = createReadStream("./data/stream.log", {
+  encoding: "utf8"
+})
+
+const writer = createWriteStream("./data/output.log");
+
+stream.pipe(writer)
+```
+
+as with `.pipe` it will not load all of the content into memory and also will not throw a memory exception error
+it will take care of the `back pressure` problem and `highWaterMark`
+
+## Resources
+
+- Udacity Advanced full stack web nanodegree.
+- Managin files on nodejs, plurasight

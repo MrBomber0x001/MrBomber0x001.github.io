@@ -116,3 +116,5 @@ Academic Resource which I recommend
 - <a href="https://www.sobyte.net/post/2022-03/go-working-pool-mode/">Go Working Pool Mode</a>
 - <a href="https://xie.infoq.cn/article/a0880b7d215f7b82bc3a0380a">Go Concurrency Patterns </a>
 - <a href="https://www.karanpratapsingh.com/courses/go/advanced-concurrency-patterns">More on Patterns</a>
+- <a href="">Go in action [book]</a>
+- <a href="">The Go Programming Language [book]</a>

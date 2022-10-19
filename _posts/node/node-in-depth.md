@@ -146,3 +146,11 @@ each phase has it's own queue.
 <https://www.youtube.com/watch?v=oPo4EQmkjvY> (important)
 
 </details>
+
+### Event Loop
+
+### Single Threaded
+
+### V8
+
+### Libuv
