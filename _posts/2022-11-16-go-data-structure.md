@@ -1141,7 +1141,7 @@ Value: 40 Value-Addr: 10500168 ElemAddr: 1052E10C
 
 // Create a slice of a slice of integers.
 
-slice := [][]int{{10}, {100, 200}}
+slice := [][]int{ {10}, {100, 200} }
 
 // Append the value of 20 to the first slice of integers.
 
