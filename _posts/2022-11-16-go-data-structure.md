@@ -2,8 +2,8 @@
 layout: post
 title: A Deeper look into Go's fundmental data structures
 subtitle: see how Arrays, Slices and Maps are represented internally and how we can optimize them
-cover-img: /assets/cover.jfif
-thumbnail-img: /assets/img/imgs2.png
+cover-img: /assets/img/cover.jfif
+thumbnail-img: /assets/img/img2.png
 share-img: /assets/img/img2.png
 tags: [go]
 ---
