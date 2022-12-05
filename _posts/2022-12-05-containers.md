@@ -174,11 +174,11 @@ There are more than one type of namespace, for example:
 
 A [**process ID (PID) namespace**](https://man7.org/linux/man-pages/man7/pid_namespaces.7.html) assigns a set of PIDs to processes that are independent of the set of PIDs in other namespaces. The first process created in a new namespace has PID 1 and child processes are assigned subsequent PIDs. If a child process is created with its own PID namespace, it has PID 1 in that namespace as well as its PID in the parent process’ namespace.
 
-![](<https://cdn.hashnode.com/res/hashnode/image/upload/v1670159658259/-9brMk2EK.png> align="left")
+<img src="https://cdn.hashnode.com/res/hashnode/image/upload/v1670159658259/-9brMk2EK.png" />
 
 From the image above, we can see that:
 
-* the `PID namespace 1(parent)` can see child namespaces PIDs, but the child can't see outside themselves
+* the `PID namespace 1(parent)` can see child namespaces PIDs, but the child can't see outsidelves
 
 * in each namespaces, the first process is `PID 1`
 
@@ -297,8 +297,7 @@ Cgroups provide the following features:
 
 * **Control** – You can change the status (frozen, stopped, or restarted) of all processes in a cgroup with a single command.
 
-![](<https://cdn.hashnode.com/res/hashnode/image/upload/v1670160480614/wr1G6-1Sz.png> align="left")
-
+<img src="https://cdn.hashnode.com/res/hashnode/image/upload/v1670160480614/wr1G6-1Sz.png" />
 ### Creating a Cgroup
 
 The following command creates a v1 cgroup (you can tell by pathname format) called `foo` and sets the memory limit for it to 50,000,000 bytes (50 MB).
