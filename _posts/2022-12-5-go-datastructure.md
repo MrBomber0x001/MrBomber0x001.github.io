@@ -1,3 +1,12 @@
+---
+layout: post
+title: A Deeper look into Go's fundmental data structures
+subtitle: see how Arrays, Slices and Maps are represented internally and how we can optimize them
+cover-img: /assets/img/cover.jfif
+thumbnail-img: /assets/img/t-sql.jpg
+share-img: /assets/img/path.jpg
+tags: [sql]
+---
 ### Arrays
 
 * Fixed-size collection of the same type of data, once the array is declared, neither the type or the length can be changed, to add more elements you need to make a new array with the length you need and copy from an old array,
