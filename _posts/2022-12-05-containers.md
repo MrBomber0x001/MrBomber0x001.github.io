@@ -33,7 +33,7 @@ In the second section, I will walk you through a practical example of all that y
 
 Aren't you excited like me? let's do it
 
-%[https://media.giphy.com/media/BpGWitbFZflfSUYuZ9/giphy.gif]
+<img src="https://media.giphy.com/media/BpGWitbFZflfSUYuZ9/giphy.gif" />
 
 * * *
 
