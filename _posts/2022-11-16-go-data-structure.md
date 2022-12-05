@@ -128,7 +128,6 @@ After copying, you'll have two arrays pointers to the same strings
 But they can be composed to create multi-dimensional ones.
 
 ```go
-
 // Declare a two dimensional integer array of four elements
 
 // by two elements.
