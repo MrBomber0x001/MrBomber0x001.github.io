@@ -7,7 +7,7 @@ thumbnail-img: /assets/img/t-sql.jpg
 share-img: /assets/img/path.jpg
 tags: [go]
 ---
-<!-- # Introduction
+# Introduction
 
 This is a test
 
@@ -299,7 +299,7 @@ newSlice := slice[1:3]
 
 Now we've two slices **sharing** the same underlying array
 
-![](<https://cdn.hashnode.com/res/hashnode/image/upload/v1670176715050/ntIRy8E1O.png> align="left")
+<img src="https://cdn.hashnode.com/res/hashnode/image/upload/v1670176715050/ntIRy8E1O.png" />
 
 The following formula is used to calculate the length and capacity of slices
 
@@ -333,7 +333,7 @@ newSlice = append(newSlice, 60)
 
 ```
 
-![](<https://cdn.hashnode.com/res/hashnode/image/upload/v1670177236053/fxV3krZBU.png> align="left")
+<img src="https://cdn.hashnode.com/res/hashnode/image/upload/v1670177236053/fxV3krZBU.png" />
 
 > When there’s no available capacity in the underlying array for a slice, the append function will create a new underlying array, copy the existing values that are being referenced, and assign the new value
 
@@ -355,7 +355,7 @@ newSlice := append(slice, 50)
 
 🟢 After this append operation, newSlice is given its own underlying array, and the capacity of the array is doubled from its original size
 
-![](<https://cdn.hashnode.com/res/hashnode/image/upload/v1670179079062/YlfUWDCl2.png> align="left")
+<img src="https://cdn.hashnode.com/res/hashnode/image/upload/v1670179079062/YlfUWDCl2.png" />
 
 > Capacity is always doubled when the existing capacity of the slice is under 1,000 elements. Once the number of elements goes over 1,000, the capacity is grown by a factor of 1.25, or 25%. This growth algorithm may change in the language over time
 
@@ -413,7 +413,7 @@ Capacity: k - i or 4  -  2  =  2
 
 ```
 
-![](<https://cdn.hashnode.com/res/hashnode/image/upload/v1670212588169/Q4Rdrov9y.png> align="left")
+<img src="https://cdn.hashnode.com/res/hashnode/image/upload/v1670212588169/Q4Rdrov9y.png"/>
 
 🔴 if we try and set a capacity larger than existing capacity, we'll get a runtime error
 
@@ -537,11 +537,11 @@ slice[0] = append(slice[0], 20)
 
 ```
 
-![](<https://cdn.hashnode.com/res/hashnode/image/upload/v1670213637629/sZdqn0qyz.png> align="left")
+<img src="https://cdn.hashnode.com/res/hashnode/image/upload/v1670213637629/sZdqn0qyz.png" />
 
 and this after appending
 
-![](<https://cdn.hashnode.com/res/hashnode/image/upload/v1670213697976/73GgRcK40.png> align="left")
+<img src="https://cdn.hashnode.com/res/hashnode/image/upload/v1670213697976/73GgRcK40.png"/>
 
 an entire new slice of integers and a new underlying array is allocated and then copied back into index 0 of the outer slice
 
@@ -571,7 +571,7 @@ return slice
 
 ```
 
-![](<https://cdn.hashnode.com/res/hashnode/image/upload/v1670213906836/tv6f08MgA.png> align="left")
+<img src="https://cdn.hashnode.com/res/hashnode/image/upload/v1670213906836/tv6f08MgA.png"/>
 
 #### Operations
 
@@ -589,7 +589,7 @@ The strength of a map is its ability to retrieve data quickly based on the key.
 
 there’s no way to predict the order in which the key/value pairs will be returned, this is because maps are implemented using hash tables
 
-![](<https://cdn.hashnode.com/res/hashnode/image/upload/v1670214089808/KzTyinOEh.png> align="left")
+<img src="https://cdn.hashnode.com/res/hashnode/image/upload/v1670214089808/KzTyinOEh.png" />
 
 The map's hash table contains
 
@@ -911,7 +911,7 @@ newSlice := slice[1:3]
 
 Now we've two slices **sharing** the same underlying array
 
-![](<https://cdn.hashnode.com/res/hashnode/image/upload/v1670176715050/ntIRy8E1O.png> align="left")
+<img src="https://cdn.hashnode.com/res/hashnode/image/upload/v1670176715050/ntIRy8E1O.png" />
 
 The following formula is used to calculate the length and capacity of slices
 
@@ -945,7 +945,7 @@ newSlice = append(newSlice, 60)
 
 ```
 
-![](<https://cdn.hashnode.com/res/hashnode/image/upload/v1670177236053/fxV3krZBU.png> align="left")
+<img src="https://cdn.hashnode.com/res/hashnode/image/upload/v1670177236053/fxV3krZBU.png" />
 
 > When there’s no available capacity in the underlying array for a slice, the append function will create a new underlying array, copy the existing values that are being referenced, and assign the new value
 
@@ -967,7 +967,7 @@ newSlice := append(slice, 50)
 
 🟢 After this append operation, newSlice is given its own underlying array, and the capacity of the array is doubled from its original size
 
-![](<https://cdn.hashnode.com/res/hashnode/image/upload/v1670179079062/YlfUWDCl2.png> align="left")
+<img src="https://cdn.hashnode.com/res/hashnode/image/upload/v1670179079062/YlfUWDCl2.png" />
 
 > Capacity is always doubled when the existing capacity of the slice is under 1,000 elements. Once the number of elements goes over 1,000, the capacity is grown by a factor of 1.25, or 25%. This growth algorithm may change in the language over time
 
@@ -1025,7 +1025,7 @@ Capacity: k - i or 4  -  2  =  2
 
 ```
 
-![](<https://cdn.hashnode.com/res/hashnode/image/upload/v1670212588169/Q4Rdrov9y.png> align="left")
+<img src="https://cdn.hashnode.com/res/hashnode/image/upload/v1670212588169/Q4Rdrov9y.png" />
 
 🔴 if we try and set a capacity larger than existing capacity, we'll get a runtime error
 
@@ -1149,11 +1149,11 @@ slice[0] = append(slice[0], 20)
 
 ```
 
-![](<https://cdn.hashnode.com/res/hashnode/image/upload/v1670213637629/sZdqn0qyz.png> align="left")
+<img src="https://cdn.hashnode.com/res/hashnode/image/upload/v1670213637629/sZdqn0qyz.png" />
 
 and this after appending
 
-![](<https://cdn.hashnode.com/res/hashnode/image/upload/v1670213697976/73GgRcK40.png> align="left")
+<img src="https://cdn.hashnode.com/res/hashnode/image/upload/v1670213697976/73GgRcK40.png" />
 
 an entire new slice of integers and a new underlying array is allocated and then copied back into index 0 of the outer slice
 
@@ -1183,7 +1183,7 @@ return slice
 
 ```
 
-![](<https://cdn.hashnode.com/res/hashnode/image/upload/v1670213906836/tv6f08MgA.png> align="left")
+<img src="https://cdn.hashnode.com/res/hashnode/image/upload/v1670213906836/tv6f08MgA.png" />
 
 #### Operations
 
@@ -1201,7 +1201,7 @@ The strength of a map is its ability to retrieve data quickly based on the key.
 
 there’s no way to predict the order in which the key/value pairs will be returned, this is because maps are implemented using hash tables
 
-![](<https://cdn.hashnode.com/res/hashnode/image/upload/v1670214089808/KzTyinOEh.png> align="left")
+<img src="https://cdn.hashnode.com/res/hashnode/image/upload/v1670214089808/KzTyinOEh.png" />
 
 The map's hash table contains
 
@@ -1227,4 +1227,4 @@ The purpose of the hash function is to generate an index that evenly distributes
 
 Practice, Practice, and Practice because knowing is not enough!
 
-> Here's a gitub repo where you can find some application I've built as a practice for such topics, You can pick what you want if you've any other ideas. -->
+> Here's a gitub repo where you can find some application I've built as a practice for such topics, You can pick what you want if you've any other ideas.
