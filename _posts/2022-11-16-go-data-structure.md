@@ -7,7 +7,7 @@ thumbnail-img: /assets/img/t-sql.jpg
 share-img: /assets/img/path.jpg
 tags: [go]
 ---
-# Introduction
+<!-- # Introduction
 
 This is a test
 
@@ -129,7 +129,6 @@ But they can be composed to create multi-dimensional ones.
 
 ```go
 // Declare a two dimensional integer array of four elements
-
 // by two elements.
 
 var array [4][2]int
@@ -1228,4 +1227,4 @@ The purpose of the hash function is to generate an index that evenly distributes
 
 Practice, Practice, and Practice because knowing is not enough!
 
-> Here's a gitub repo where you can find some application I've built as a practice for such topics, You can pick what you want if you've any other ideas.
+> Here's a gitub repo where you can find some application I've built as a practice for such topics, You can pick what you want if you've any other ideas. -->
