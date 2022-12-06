@@ -3,8 +3,8 @@ layout: post
 title: Handcrafting containers at low level - without Docker
 subtitle: See how containers can be made under the hood, beside some of Docker internals!
 cover-img: /assets/img/cover.jfif
-thumbnail-img: /assets/img/img2.png
-share-img: /assets/img/img2.png
+thumbnail-img: /assets/img/docker2.png
+share-img: /assets/img/docker2.png
 tags: [go]
 ---
 ## Table of contents
