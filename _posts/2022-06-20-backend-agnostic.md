@@ -31,6 +31,7 @@ Backend Specific Courses and Books which are language agnostic
 **Books**:
 
 - [ ] Database System Concepts, Third Edition. [more academic]
+- [ ] Database Internals, see how distributed database works
 
 **Courses**:
 
@@ -39,6 +40,7 @@ Backend Specific Courses and Books which are language agnostic
 Ideas:
 
 ## Distributed Systems and System Design
+
 Before going into that section, you should've a technial knowledge of Operation Systems, Databases, Cryptography!
 
 <strong>Books</strong>
