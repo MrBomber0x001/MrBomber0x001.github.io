@@ -20,6 +20,8 @@ With +2 experience building resilient products on top of NodeJs and Typescript (
 - Electronics Engineering, Menoufia University, Computer Science and Engineering
 - Related Coursework: OS, Data structures, Algorithms, Design Patterns, Software Engineering, Compilers, Networking, Distributed Systems,
 
+</hr >
+
 ##### Tech Stack
 
 - Technologies: Docker, GraphQl, Express, NestJs, Nginx.
@@ -43,6 +45,8 @@ With +2 experience building resilient products on top of NodeJs and Typescript (
 - Understanding of OSI model and related protocols (`HTTP/HTTPs`,`TCP`, `UDP`, `DNS`, `ARP`, `FTP`, `SSH`, `TLS`), and good knowledge about networking tools like iptables, wireshark, tcpdump, and more.
 - Knowlege and Practice of (`WebRTC`, `WebSockets`, `RPC`, `gRPC`)
 - Understanding of `OIDC` and `OAuth 2.0` protocols.
+
+<hr />
 
 ##### Projects
 
