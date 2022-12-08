@@ -20,7 +20,7 @@ With +2 experience building resilient products on top of NodeJs and Typescript (
 - Electronics Engineering, Menoufia University, Computer Science and Engineering
 - Related Coursework: OS, Data structures, Algorithms, Design Patterns, Software Engineering, Compilers, Networking, Distributed Systems,
 
-</hr >
+<hr />
 
 ##### Tech Stack
 
@@ -28,6 +28,8 @@ With +2 experience building resilient products on top of NodeJs and Typescript (
 - Languages: Javascript, NodeJs, Typescript, Golang, C++, bash.
 - Databases: PostgreSQL, MySQl, MongoDB, Redis.
 - Deployment: AWS, CircleCI (CI/CD), Heroku, Vercel.
+
+<hr />
 
 ##### Skills
 
