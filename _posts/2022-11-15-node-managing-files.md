@@ -1,7 +1,7 @@
 ---
 layout: post
 title: File Processing with NodeJs [Comphrensive Guide]
-subtitle: Learn different methodology of handling files.
+subtitle: A guide to working and managing files with nodejs.
 cover-img: /assets/img/cover.jfif
 thumbnail-img: /assets/img/node.jpg
 share-img: /assets/img/node.jpg
