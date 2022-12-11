@@ -77,3 +77,5 @@ With +2 experience building resilient products on top of NodeJs and Typescript (
   - Hosted the frontend code on AWS S3
   - Wrote the automated deployment script using CircleCI as a pipeline service
   - Wrote the unit and integration testing for the frontend and backend code.
+
+<!--- A confident, self-motivated software architect with experience in software Engineering and Architecture. A deep researcher and a passionate learner in every aspect of his life, with good analytical and verbal skills --->
