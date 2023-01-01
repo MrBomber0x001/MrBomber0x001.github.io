@@ -4,7 +4,6 @@ title: About me
 subtitle: 
 ---
 
-<img src="./assets/img/me.jpg"/>
 
 Hola 👋, I am Yousef, A
 I'm Yousef, A Software Engineer obsessed with Javascript , highly focused on the performance of web applications. <br/>
