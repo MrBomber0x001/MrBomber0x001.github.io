@@ -27,9 +27,7 @@ tags: [nodejs]
 You'll face tasks such as
 
 - loading data into database: convering delimited file and loading it onto a database
-
 - displaying contents of log files
-
 the option avaiable to manipulating files are alot ranging from async reading to sync and from  partial to full
 
 ### Reading Entire File
@@ -102,9 +100,7 @@ reading the entire file will cause the file to be loaded into the memory which c
 so Reading it partially will help us decrease the load and if we want to make processes on the the data it would be possible
 
 `open`, `read`
-
 `open(path, (err, fd))`
-
 `read(fd, buffer, bufferOffset, HowMuchToRead, WhereToStartReadingOnTheFile)`
 
 - `bufferOffset` is where to start inserting into the Buffer not the file!, so it's not the offset of the file
@@ -293,9 +289,7 @@ We can specifiy also an encoding
 `path` module allows for cross-platform usage
 
 1. `.resolve` get the absolute path from relative one
-
 2. `.normalize` Normalizes any path by removing instances of `.` , turning double slashes into single slashes and removing a directory when `..` is found.
-
 3. `.join` join strings to a directory
 
 ```js
@@ -338,9 +332,7 @@ const readFile = async () => {
 ```
 
 1. .write()
-
    1. does not overwrite content
-
    2. file must be open first
 
       ```js
@@ -348,7 +340,6 @@ const readFile = async () => {
       ```
 
 2. .writeFile()
-
    1. overwrites existing file
 
       ```js
@@ -358,13 +349,9 @@ const readFile = async () => {
 ***reading***
 
 1. .read()
-
    1. read entire file
-
    2. read part of a file
-
    3. file must be opened first
-
    4. requires a buffer to store read data
 
       ```js
@@ -372,9 +359,7 @@ const readFile = async () => {
       ```
 
 2. .readFile()
-
    1. read entire file
-
    2. more popular choice
 
       ```js
@@ -384,23 +369,16 @@ const readFile = async () => {
 **moving and renaming**
 
 - renaming and moving are the same
-
 - .rename()
-
 - change path argument
-
 - use .mkdir() if the directroy doesn't exist
-
 `.rename(original_path, new_path)`
 
 **Deleting files and directories**
 
 - `.unlink()` method to remove file
-
 - `.rmdir()` remove dir, will fail if the dir is not empty
-
 - you can use 3rd path module `rimraf` to delete directories with files
-
 `unlink(path), rmdir(path)`
 
 ### Real world Sceniro
