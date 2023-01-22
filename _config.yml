@@ -197,7 +197,7 @@ footer-hover-col: "#0085A1"
 giscus:
   hostname: giscus.app # Replace with your giscus instance's hostname if self-hosting
   repository: mrbomber0x001/mrbomber0x001.github.io # GitHub username/repository eg. "daattali/beautiful-jekyll"
-  repository-id: # ID of your repository, retrieve this info from https://giscus.app
+  repository-id: R_kgDOHjVy3A # ID of your repository, retrieve this info from https://giscus.app
   category: Announcements # Category name of your GitHub Discussion posts
   category-id: # ID of your category, retrieve this info from https://giscus.app
   mapping: pathname
@@ -205,6 +205,21 @@ giscus:
   emit-metadata: 0
   theme: light
 
+# <script src="https://giscus.app/client.js"
+#         data-repo="mrbomber0x001/mrbomber0x001.github.io"
+#         data-repo-id="R_kgDOHjVy3A"
+#         data-category="[ENTER CATEGORY NAME HERE]"
+#         data-category-id="[ENTER CATEGORY ID HERE]"
+#         data-mapping="pathname"
+#         data-strict="0"
+#         data-reactions-enabled="1"
+#         data-emit-metadata="0"
+#         data-input-position="bottom"
+#         data-theme="preferred_color_scheme"
+#         data-lang="en"
+#         crossorigin="anonymous"
+#         async>
+# </script>
 # --- Misc --- #
 
 # Ruby Date Format to show dates of posts
