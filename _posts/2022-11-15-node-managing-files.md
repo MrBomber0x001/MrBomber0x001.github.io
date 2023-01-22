@@ -22,6 +22,9 @@ tags: [nodejs]
 - Moving and Deleting (linking and unlinking)
 - Renaming
 
+Reading
+------
+
 ### Reasons to Read to a file
 
 You'll face tasks such as
@@ -210,6 +213,9 @@ well it depends!
 If you passed a file path to `readFile`, then it closes it automatically, if you passed a `fd` then you must close it
 
 > Any time you've a file descriptor, you are responsible for closing the file
+
+Writing
+------
 
 ### Writing Entire file
 
