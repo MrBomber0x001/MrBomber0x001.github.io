@@ -199,7 +199,7 @@ giscus:
   repository: mrbomber0x001/mrbomber0x001.github.io # GitHub username/repository eg. "daattali/beautiful-jekyll"
   repository-id: R_kgDOHjVy3A # ID of your repository, retrieve this info from https://giscus.app
   category: Announcements # Category name of your GitHub Discussion posts
-  category-id: # ID of your category, retrieve this info from https://giscus.app
+  category-id: DIC_kwDOHjVy3M4CTvDv # ID of your category, retrieve this info from https://giscus.app
   mapping: pathname
   reactions-enabled: 1
   emit-metadata: 0
