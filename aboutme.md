@@ -18,8 +18,8 @@ With +2 experience building resilient products on top of NodeJs and Typescript (
 ##### Education
 
 - Udacity Advanced Full Stack Nanodegree.
-- Electronics Engineering, Menoufia University, Computer Science and Engineering
-- Related Coursework: OS, Data structures, Algorithms, Design Patterns, Software Engineering, Compilers, Networking, Distributed Systems,
+- Electronics Engineering, Menoufia University, Computer Engineering.
+- Related Coursework: OS, Data structures, Algorithms, Design Patterns, Software Engineering, Compilers, Networking, Distributed Systems.
 
 <hr />
 
@@ -28,7 +28,7 @@ With +2 experience building resilient products on top of NodeJs and Typescript (
 - Technologies: Docker, GraphQl, Express, NestJs, Nginx.
 - Languages: Javascript, NodeJs, Typescript, Golang, C++, bash.
 - Databases: PostgreSQL, MySQl, MongoDB, Redis.
-- Deployment: AWS, CircleCI (CI/CD), Heroku, Vercel.
+- Cloud: Kubernetes, AWS, CircleCI, TravisCI, Jenkins (CI/CD), Heroku, Vercel.
 
 <hr />
 
