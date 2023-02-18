@@ -44,11 +44,11 @@ social-network-links:
   # facebook: deanattali
   github: mrbomber0x001
   twitter: meska54
+  linkedin: yousef-meska
+  medium: meska54
   # patreon: DeanAttali
   # youtube: c/daattali
-#  medium: yourname
 #  reddit: yourname
-#  linkedin: daattali
 #  xing: yourname
 #  stackoverflow: "3943160/daattali"
 #  snapchat: deanat78
@@ -69,7 +69,7 @@ social-network-links:
 
 # If you want your website to generate an RSS feed, provide a description
 # The URL for the feed will be https://<your_website>/feed.xml
-rss-description: a Software Engineering Blog Dedicated to dig deep into Backend concepts!
+rss-description: A Software Engineering Blog Dedicated for digging deeper into Backend concepts!
 
 # --- General options --- #
 
@@ -97,7 +97,7 @@ feed_show_tags: true
 post_search: true
 
 # The keywords to associate with your website, for SEO purposes
-#keywords: "my,list,of,keywords"
+keywords: "backend,distributed systems,database,internals"
 
 # --- Colours / background image --- #
 
@@ -150,10 +150,10 @@ footer-hover-col: "#0085A1"
 # Matomo (aka Piwik) Web statistics
 # Uncomment the following section to enable Matomo. The opt-out parameter controls
 # whether or not you want to allow users to opt out of tracking.
-#matomo:
-#  site_id: "9"
-#  uri: "demo.wiki.pro"
-#  opt-out: true
+matomo:
+  site_id: "382e8fc0-937c-4c9b-b0dd-32ed2341dc42"
+  uri: "meska54.wiki.pro"
+  opt-out: true
 
 # --- Comments --- #
 
