@@ -152,7 +152,7 @@ footer-hover-col: "#0085A1"
 # whether or not you want to allow users to opt out of tracking.
 matomo:
   site_id: "382e8fc0-937c-4c9b-b0dd-32ed2341dc42"
-  uri: "meska54.wiki.pro"
+  uri: "meska54.piwik.pro"
   opt-out: true
 
 # --- Comments --- #
