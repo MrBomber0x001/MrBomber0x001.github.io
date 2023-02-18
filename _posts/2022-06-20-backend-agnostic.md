@@ -18,6 +18,9 @@ Backend Specific Courses and Books which are language agnostic
 
 ## Linux
 
+- [ ] <a href="https://www.youtube.com/playlist?list=PLs2E_DpcI_iw868bv3YwB46xiaFpwBYX1">Linux kernel course</a>
+- [ ] Learning modern linux, Book
+- [ ] Linux 101, Alarabawy
 **Books**:
 
 - [ ] How Linux works.
@@ -27,6 +30,13 @@ Backend Specific Courses and Books which are language agnostic
 - [ ] Ahmed Alarabawy on Youtube [Software Engineer @Google]
 
 ## Databases
+
+DB
+------
+
+- [ ] Fundmentals of Database Engineering, Hussein Nasser
+- [ ] FrontendMasters Courses
+- [ ] Database Internals, Book
 
 **Books**:
 
@@ -41,7 +51,14 @@ Ideas:
 
 ## Distributed Systems and System Design
 
-Before going into that section, you should've a technial knowledge of Operation Systems, Databases, Cryptography!
+Before going into that section, you should've a miniamal knowledge of Operation Systems, Databases, Cryptography!
+
+- [ ] <a href="https://www.youtube.com/playlist?list=PLrw6a1wE39_tb2fErI4-WkMbsvGQk9_UB">MIT 6.824 Distributed Systems (Spring 2020)</a>
+- [ ] <a href="https://www.youtube.com/playlist?list=PLeKd45zvjcDFUEv_ohr_HdUFe97RItdiB">Distributed Systems Lectures, Martin Kleppman </a>
+- [ ] <a href="https://www.youtube.com/watch?v=bUHFg8CZFws">System Design Interview [[Best Resource]]</a>
+- [ ] Distributed Systems For Fun and Profit [[Best resource, 60 pdf]]
+- [ ] Designing Data Intensive Application, Martin Kleppman
+- [ ] System Design Interview I, II
 
 <strong>Books</strong>
 
@@ -54,6 +71,10 @@ Before going into that section, you should've a technial knowledge of Operation 
 - [ ] Web Architecture 101, [Educative]
 - [ ] <a href="https://www.youtube.com/playlist?list=PLrw6a1wE39_tb2fErI4-WkMbsvGQk9_UB"> MIT 6.824 Distributed Systems, Spring 2022</a>
 - [ ] <a href="https://www.youtube.com/playlist?list=PLeKd45zvjcDFUEv_ohr_HdUFe97RItdiB">Distributed Systems Lecture</a>
+
+<strong>Another good resources</strong>
+
+- [ ] <a href="https://www.youtube.com/watch?v=3IWpU72eixw&list=LL&index=34">The Art of System Design</a>
 
 ## Networking
 
@@ -83,6 +104,10 @@ Courses:
 
 ## Operating Systems
 
+- [ ] <a href="https://www.youtube.com/playlist?list=PL6KMWPQP_DM-7tMNjUa7X2zGrc8jipPeI">Ghassan Shobaki OS course</a>
+- [ ] <a href="https://www.youtube.com/playlist?list=PLiRL7CfiWlYG0YdUPcaY7R6CjCGrNIZB0">ITI</a>
+- [ ] Operating Systems: Three Easy Pieces, Book
+
 **Books**:
 
 - [ ] Operating Systems - Three Easy Pieces
@@ -104,6 +129,9 @@ Courses:
 
 - [ ] Frontend Masters Series
 
+- [ ] FrontendMasters series
+- [ ] Functional Javascript in action, book
+
 ## Compilers
 
 ## Software Architecture
@@ -117,3 +145,8 @@ and for you as a backend engineer it's mandatory to grash those concepts very we
 Books:
 
 Other Useful resources:
+
+ALG
+---------
+
+- [ ] Cracking the coding Interview [very_recommended]
