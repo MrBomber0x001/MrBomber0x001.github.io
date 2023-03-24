@@ -93,32 +93,6 @@ func RandomNumber(n int) int {
 | 4 |
 **A real world example**
 
-## Progress
-
-- [ ] concurrency
-- [ ] Goroutines
-- [ ] callbacks
-- [ ] Mutexes
-- [ ] Channels
-- [ ] Using it all  - Concurrent Singleton
-
-## Resources
-
-Academic Resource which I recommend
-
-- [ ] Operating system, three easy pieces
-- [ ] Go concurrency, Oreilly
-
-- <a href="https://betterprogramming.pub/deep-dive-into-concurrency-of-go-93002344d37b">Deep Dive into Go Concurrency</a>
-- <a href="https://pstree.cc/wtf-is-goroutines/">wtf is goroutines</a>
-- <a href="https://www.youtube.com/watch?v=oV9rvDllKEg">Concurrency is not Parallelism Rob Pike</a>
-- <a href="https://go.dev/doc/effective_go#concurrency">Effective Go - concurrency </a>
-- <a href="https://www.sobyte.net/post/2022-03/go-working-pool-mode/">Go Working Pool Mode</a>
-- <a href="https://xie.infoq.cn/article/a0880b7d215f7b82bc3a0380a">Go Concurrency Patterns </a>
-- <a href="https://www.karanpratapsingh.com/courses/go/advanced-concurrency-patterns">More on Patterns</a>
-- <a href="">Go in action [book]</a>
-- <a href="">The Go Programming Language [book]</a>
-
 # Introduction
 
 > you can head over to this repo, in which I've maintained all of the code examples below
@@ -145,7 +119,7 @@ You can think of a process like a container that holds all the resources an appl
 
 A thread is a path of execution that’s scheduled by the operating system to run the code that you write in your functions.
 
-![](https://cdn.hashnode.com/res/hashnode/image/upload/v1679430325098/7404d099-4842-47b9-a7e8-e04bac02b5d9.png align="center")
+<img src="https://cdn.hashnode.com/res/hashnode/image/upload/v1679430325098/7404d099-4842-47b9-a7e8-e04bac02b5d9.png" />
 
 The operating system schedules threads to run against processors regardless of the process they belong to.
 
@@ -169,7 +143,7 @@ But to have true parallelism, you still need to run your program on a machine wi
 
 If not, then the goroutines will be running concurrently against a single physical processor, even though the Go runtime is using multiple threads.
 
-![Concurrency vs parallelism](https://cdn.hashnode.com/res/hashnode/image/upload/v1679430025472/4c7a1958-4e3f-4ca9-8725-072918295d69.png align="center")
+<img src="https://cdn.hashnode.com/res/hashnode/image/upload/v1679430025472/4c7a1958-4e3f-4ca9-8725-072918295d69.png alt="Concurrency vs parallelism" />
 
 ## Goroutines
 
@@ -195,7 +169,7 @@ A coroutine is a unit of a program that can be paused and resumed multiple times
 
 While a subroutine is a unit of a program that's executed sequentially, invocations are independent so the internal state of a subroutine is not shared between invocations, a subroutine finishes when all instructions are executed, cannot be resumed afterward
 
-![](https://cdn.discordapp.com/attachments/1084610105397485578/1087858713097945209/image.png align="left")
+<img src="https://cdn.discordapp.com/attachments/1084610105397485578/1087858713097945209/image.png" />
 
 ## **Go's runtime scheduler in depth**
 
@@ -213,7 +187,7 @@ top of the operating system, binding the operating system’s threads to logical
 
 3. From there, a goroutine waits its turn to be given the logical processor for execution.
 
-![Go's runtime scheduler behaviour](https://cdn.discordapp.com/attachments/1087493279777562734/1087776364180013146/Screenshot_2023-03-20_231224.png align="center")
+<img src="https://cdn.discordapp.com/attachments/1087493279777562734/1087776364180013146/Screenshot_2023-03-20_231224.png" alt="Go's runtime scheduler behaviour" />
 
 Sometimes a running goroutine may need to perform a blocking syscall, such as opening a file.
 
@@ -517,3 +491,18 @@ Academic Resources which I recommend
 - [Go in action \[book\]](https://file+.vscode-resource.vscode-cdn.net/c%3A/Users/ncm/Desktop/studying/Go-library/Concurrency%20Patterns/concurrency/README.md)
 
 - [The Go Programming Language \[book\]](https://file+.vscode-resource.vscode-cdn.net/c%3A/Users/ncm/Desktop/studying/Go-library/Concurrency%20Patterns/concurrency/README.md)
+
+Academic Resource which I recommend
+
+- [ ] Operating system, three easy pieces
+- [ ] Go concurrency, Oreilly
+
+- <a href="https://betterprogramming.pub/deep-dive-into-concurrency-of-go-93002344d37b">Deep Dive into Go Concurrency</a>
+- <a href="https://pstree.cc/wtf-is-goroutines/">wtf is goroutines</a>
+- <a href="https://www.youtube.com/watch?v=oV9rvDllKEg">Concurrency is not Parallelism Rob Pike</a>
+- <a href="https://go.dev/doc/effective_go#concurrency">Effective Go - concurrency </a>
+- <a href="https://www.sobyte.net/post/2022-03/go-working-pool-mode/">Go Working Pool Mode</a>
+- <a href="https://xie.infoq.cn/article/a0880b7d215f7b82bc3a0380a">Go Concurrency Patterns </a>
+- <a href="https://www.karanpratapsingh.com/courses/go/advanced-concurrency-patterns">More on Patterns</a>
+- <a href="">Go in action [book]</a>
+- <a href="">The Go Programming Language [book]</a>
