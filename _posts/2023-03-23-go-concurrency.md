@@ -17,85 +17,9 @@ tags: [go]
 4. Deadlocks
 5. Concurrency Patterns
 
-Go is a multi-paradigm programming language
+## Introduction
 
-## Hubmle Introduction to concurrency
-
-- Advantages
-- Concept of Concurrency
-- Differentiating between Concurrency and Parallelism
-- CSP versus actor based Concurrency
-
-Go's Concurrency allows us to:
-
-- Construct `Streaming data pipelines`
-- Make efficient use of I/O and multiple CPUs
-- Allows complex systems with multiple components
-- `Routines` can start, run and complete simultaneously
-- Raises the efficiency of the applications
-
-## Goroutines
-
-- Creating first Goroutines
-- Launching anonymous functions
-- Using WaitGroup
-
-we use goroutine to execute code we need to run concurrently
-In go we achieve concurrency by working with `goroutines`, in fact the `main` loop of go could be considered goroutine
-goroutines are used in places where we might use actors
-
-- they are not threads, we can create millions of goroutines
-- incredibly cheap
-- Have small growth of stack
-
-## channels
-
-In simpler words, they are means to sending information from part of your program to another part of your program
-
-```go
-// You can edit this code!
-// Click here and start typing.
-package main
-
-import (
- "log"
- "math/rand"
- "time"
-)
-
-const numPool = 10
-
-func CalculateValue(intChan chan int) {
- randomNumber := RandomNumber(numPool)
- intChan <- randomNumber
-}
-
-func main() {
- intChan := make(chan int) // a channel that can hold only int
- defer close(intChan)      // as good practice to close the channel after main finish executing, that's why we use defer
-
- go CalculateValue(intChan)
-
- num := <-intChan
- log.Println(num)
-}
-
-func RandomNumber(n int) int {
- rand.Seed(time.Now().UnixNano())
- value := rand.Intn(n)
- return value
-}
-
-```
-
-| output |
-| -- |
-| 4 |
-**A real world example**
-
-# Introduction
-
-> you can head over to this repo, in which I've maintained all of the code examples below
+> you can head over to this <a href="https://github.com/MrBomber0x001/hashnode-material/tree/main/Go">Repo</a>, in which I've maintained all of the code examples below.
 
 Go's built-in support for concurrency is one of its most significant features, making it a popular choice for building high-performance and scalable systems. In this article, we're going to explore the concepts of concurrency in Golang, including its core primitives, such as **goroutines** and **channels**, and how they enable developers to build concurrent programs with ease.
 
@@ -143,7 +67,15 @@ But to have true parallelism, you still need to run your program on a machine wi
 
 If not, then the goroutines will be running concurrently against a single physical processor, even though the Go runtime is using multiple threads.
 
-<img src="https://cdn.hashnode.com/res/hashnode/image/upload/v1679430025472/4c7a1958-4e3f-4ca9-8725-072918295d69.png alt="Concurrency vs parallelism" />
+<img src="https://cdn.hashnode.com/res/hashnode/image/upload/v1679430025472/4c7a1958-4e3f-4ca9-8725-072918295d69.png" alt="Concurrency vs parallelism" />
+
+Go's Concurrency allows us to:
+
+- Construct `Streaming data pipelines`
+- Make efficient use of I/O and multiple CPUs
+- Allows complex systems with multiple components
+- `Routines` can start, run and complete simultaneously
+- Raises the efficiency of the applications
 
 ## Goroutines
 
@@ -274,6 +206,8 @@ Here's a **diagram** of what's already happened
 🤔 What if we tried to change the number of logical processors from 1 to 2, what do you think goin' to happen❓
 
 ```go
+package main
+
 
 func main() {
  runtime.GOMAXPROCS(2)
@@ -466,43 +400,13 @@ Lastly, thanks for reading this write-up, if it helped you learn something new, 
 
 ## Resources
 
-Academic Resources which I recommend
-
-- \[ \] Operating system, three easy pieces
-
-- \[ \] Go concurrency, Oreilly
-
 - [Go class \[the best\]](https://www.youtube.com/playlist?list=PLoILbKo9rG3skRCj37Kn5Zj803hhiuRK6)
-
 - [Deep Dive into Go Concurrency](https://betterprogramming.pub/deep-dive-into-concurrency-of-go-93002344d37b)
-
 - [wtf is goroutines](https://pstree.cc/wtf-is-goroutines/)
-
 - [Concurrency is not Parallelism Rob Pike](https://www.youtube.com/watch?v=oV9rvDllKEg)
-
 - [Effective Go - concurrency](https://go.dev/doc/effective_go#concurrency)
-
 - [Go Working Pool Mode](https://www.sobyte.net/post/2022-03/go-working-pool-mode/)
-
 - [Go Concurrency Patterns](https://xie.infoq.cn/article/a0880b7d215f7b82bc3a0380a)
-
 - [More on Patterns](https://www.karanpratapsingh.com/courses/go/advanced-concurrency-patterns)
-
 - [Go in action \[book\]](https://file+.vscode-resource.vscode-cdn.net/c%3A/Users/ncm/Desktop/studying/Go-library/Concurrency%20Patterns/concurrency/README.md)
-
 - [The Go Programming Language \[book\]](https://file+.vscode-resource.vscode-cdn.net/c%3A/Users/ncm/Desktop/studying/Go-library/Concurrency%20Patterns/concurrency/README.md)
-
-Academic Resource which I recommend
-
-- [ ] Operating system, three easy pieces
-- [ ] Go concurrency, Oreilly
-
-- <a href="https://betterprogramming.pub/deep-dive-into-concurrency-of-go-93002344d37b">Deep Dive into Go Concurrency</a>
-- <a href="https://pstree.cc/wtf-is-goroutines/">wtf is goroutines</a>
-- <a href="https://www.youtube.com/watch?v=oV9rvDllKEg">Concurrency is not Parallelism Rob Pike</a>
-- <a href="https://go.dev/doc/effective_go#concurrency">Effective Go - concurrency </a>
-- <a href="https://www.sobyte.net/post/2022-03/go-working-pool-mode/">Go Working Pool Mode</a>
-- <a href="https://xie.infoq.cn/article/a0880b7d215f7b82bc3a0380a">Go Concurrency Patterns </a>
-- <a href="https://www.karanpratapsingh.com/courses/go/advanced-concurrency-patterns">More on Patterns</a>
-- <a href="">Go in action [book]</a>
-- <a href="">The Go Programming Language [book]</a>
