@@ -69,8 +69,3 @@ func RandomNumber(n int) int {
 }
 
 ```
-
-| output |
-| -- |
-| 4 |
-**A real world example**
