@@ -6,11 +6,11 @@ subtitle:
 
 
 Hola 👋, I am Yousef, A
-I'm Yousef, A Software Engineer obsessed with Javascript , highly focused on the performance of web applications. <br/>
+I'm Yousef, a Pragmatic Software Engineer obsessed with Javascript, highly focused on the performance of web applications. <br/>
 
 <img src="/assets/img/me.jpg" alt="my image" width="50%" height="50%" style="float: left; margin: 10px;"/>
 
-With +2 experience building resilient products on top of NodeJs and Typescript (PERN, MERN) stacks. You can check yousefmeska.tech for more info.
+With +2 experience building resilient products on top of NodeJs and Typescript
 
 I love writing due to the love of knowing and mastering something, I love digging into the internals of anything I am exposed to, so writing helps me have a clear and strong mental model about that thing.
 
